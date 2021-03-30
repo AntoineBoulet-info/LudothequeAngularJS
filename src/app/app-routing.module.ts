@@ -15,9 +15,9 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'ro', component: LpSolverTestComponent},
-  {path: 'games', component: GamesListComponent},
   {path: 'create-game', component: GamesFormComponent},
   {path: 'details/:id', component: GamesDetailComponent},
+  {path: 'games', component: GamesListComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
 

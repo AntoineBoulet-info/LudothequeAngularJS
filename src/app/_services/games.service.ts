@@ -14,8 +14,6 @@ export class GamesService{
   game: Game[];
 
 
-
-
   constructor(private http: HttpClient) {
     this.map = new Map();
     this.game.forEach((x: Game) => this.map.set(x.id, x));
