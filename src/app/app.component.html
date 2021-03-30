@@ -1,20 +1,18 @@
-<ul>
-  <li *ngIf="authService.isLoggedOut$ | async"><a [routerLink]="['/login']">Login</a></li>
-  <li *ngIf="authService.isLoggedIn$ | async"><a [routerLink]="['/profile']">Profile</a></li>
-  <li *ngIf="authService.isLoggedIn$ | async"><button (click)="logout()">logout</button></li>
-  <li><a [routerLink]="['/ro']">Exo RO</a></li>
-</ul>
-<router-outlet></router-outlet>
+
+
 
 <p-toast position="top-right" key="main"></p-toast>
 <p-menubar [model]="items">
-  <!--      <ng-template pTemplate="end">
-          <input type="text" pInputText placeholder="Search">
-        </ng-template>-->
-  <button type="button" pButton label="Logout" icon="pi pi-power-off" style="margin-left:.25em"></button>
 
+  <div style="display:inline-block" >
+  <div style="display: inline;margin-right: 15px;" *ngIf="authService.isLoggedOut$ | async"><p-button [routerLink]="['/login']">Login</p-button></div>
+    <div style="display: inline;margin-right: 15px;" *ngIf="authService.isLoggedIn$ | async"><p-button [routerLink]="['/profile']">Profile</p-button></div>
+    <div style="display: inline;margin-right: 15px;" *ngIf="authService.isLoggedIn$ | async"><p-button (click)="logout()">Logout</p-button></div>
+  <p-button [routerLink]="['/dashboard']" style="display:inline">Gamehub </p-button>
+  </div>
 </p-menubar>
+<router-outlet></router-outlet>
 
-<button (click)="show()">test</button>
 
-<app-games-form></app-games-form>
+<!--<button (click)="show()">test</button>-->
+

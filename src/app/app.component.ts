@@ -16,9 +16,9 @@ constructor(public messageService: MessageService, public authService: Authentif
 
   items: MenuItem[];
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.items = [
-      {
+/*      {
         label: 'File',
         icon: 'pi pi-fw pi-file',
         items: [
@@ -49,7 +49,7 @@ constructor(public messageService: MessageService, public authService: Authentif
             icon: 'pi pi-fw pi-external-link'
           }
         ]
-      },
+      },*/
       /*      {
               label: 'Edit',
               icon: 'pi pi-fw pi-pencil',
@@ -73,12 +73,12 @@ constructor(public messageService: MessageService, public authService: Authentif
 
               ]
             },*/
-      {
+      /*{
         label: 'Utilisateurs',
         icon: 'pi pi-fw pi-user',
-        /*
+        /!*
                 visible : () => this.isUserAdmin();
-        */
+        *!/
         items: [
           {
             label: 'Nouvel Utilisateur',
@@ -111,11 +111,17 @@ constructor(public messageService: MessageService, public authService: Authentif
             ]
           },
         ]
-      },
+      },*/
       {
         label: 'Ro',
         icon: 'pi pi-fw pi-book',
         routerLink: '/ro',
+        routerLinkActiveOptions: {exact: true},
+      },
+      {
+        label: 'Créer un jeu',
+        icon: 'pi pi-fw pi-pencil',
+        routerLink: '/create-game',
         routerLinkActiveOptions: {exact: true},
       },
      /* {
@@ -125,7 +131,8 @@ constructor(public messageService: MessageService, public authService: Authentif
         routerLinkActiveOptions: {exact: true},
       },*/
       {label: 'Games',
-      icon: 'pi pi-'}
+      icon: 'pi pi-desktop'},
+
       /*{
          label: 'Events',
          icon: 'pi pi-fw pi-calendar',

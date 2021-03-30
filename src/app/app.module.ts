@@ -29,6 +29,8 @@ import {ButtonModule} from 'primeng/button';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import {MenubarModule} from "primeng/menubar";
+import {OverlayPanelModule} from "primeng/overlaypanel";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
 
 
 registerLocaleData(localeFr, 'fr');
@@ -57,10 +59,11 @@ registerLocaleData(localeFr, 'fr');
     DropdownModule,
     PanelModule,
     InputTextareaModule,
-    ButtonModule
-
     ReactiveFormsModule,
-    MenubarModule
+    MenubarModule,
+    ButtonModule,
+    OverlayPanelModule,
+    ConfirmDialogModule
   ],
   providers: [AuthentificationService, MessageService,
     {provide: LOCALE_ID, useValue: 'fr-FR'},
