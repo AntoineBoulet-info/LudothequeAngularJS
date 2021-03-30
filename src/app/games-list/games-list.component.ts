@@ -39,6 +39,16 @@ export class GamesListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.items = [
+      {label: 'Tri par nom', icon: 'pi pi-check', command: () => {
+          this.tri = 1;
+          // this.games = this.service.getGame(this.tri);
+        }},
+      {label: 'Tri par note', icon: 'pi pi-check', command: () => {
+          this.tri = 0;
+          // this.games = this.service.getGame(this.tri);
+        }},
+    ];
     const games: Game[] = [];
     this.service.getGamesObs().subscribe(
       val => console.log(val), // check if the game is pushed
@@ -46,16 +56,6 @@ export class GamesListComponent implements OnInit {
       () => this.game$ = of(games)
     );
     this.game = games;
-    this.items = [
-      {label: 'Tri par nom', icon: 'pi pi-check', command: () => {
-        this.tri = 1;
-        // this.games = this.service.getGame(this.tri);
-        }},
-      {label: 'Tri par note', icon: 'pi pi-check', command: () => {
-          this.tri = 0;
-          // this.games = this.service.getGame(this.tri);
-        }},
-    ];
   }
 
 }
