@@ -108,4 +108,17 @@ export class AuthentificationService {
     clearTimeout(this.refreshTokenTimeout);
   }
 
+  createUser(user: User): Observable<User> {
+    const url = `http://localhost:8000/api/register`;
+    return this.http.post<any>(url, user, httpOptions)
+      .pipe(
+        map(res => res.data.item),
+        tap(body => console.log(body)),
+        catchError(err => {
+          console.log('Erreur http : ', err);
+          return of(undefined);
+        })
+      );
+  } // Gaëtan - Fonction à vérif
+
 }

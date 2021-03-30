@@ -8,13 +8,7 @@ import {MenuItem} from 'primeng/api';
 @Component({
   selector: 'app-dashboard',
   template: `
-    <!--<p-menubar [model]="items">
-&lt;!&ndash;      <ng-template pTemplate="end">
-        <input type="text" pInputText placeholder="Search">
-      </ng-template>&ndash;&gt;
-      <button type="button" pButton label="Logout" icon="pi pi-power-off" style="margin-left:.25em"></button>
 
-    </p-menubar>-->
   `,
   styles: [
   ]

@@ -36,6 +36,12 @@ constructor(public messageService: MessageService, public authService: Authentif
         routerLink: '/games',
         routerLinkActiveOptions: {exact: true},
       },
+      {
+        label: 'Créer un profil',
+        icon: 'pi pi-fw pi-pencil',
+        routerLink: '/add-user',
+        routerLinkActiveOptions: {exact: true},
+      },
       ];
   }
 

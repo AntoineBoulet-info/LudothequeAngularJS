@@ -1,6 +1,17 @@
-
+<br>
 <form [formGroup]="formulaire" (ngSubmit)="onSubmit()">
-  Email : <input type="text" formControlName="email"><br>
-  Mot de passe : <input type="password" formControlName="password"><br>
+  <div class="p-field p-grid">
+    <label for="email" class="p-col-fixed" style="width:100px">Email</label>
+    <div class="p-col">
+      <input id="email" type="text" pInputText>
+    </div>
+  </div>
+  <div class="p-field p-grid">
+    <label for="password" class="p-col-fixed" style="width:100px">Lastname</label>
+    <div class="p-col">
+      <input id="password" type="text" pInputText>
+    </div>
+  </div>
+
   <button [disabled]="!formulaire.valid">Valide</button>
 </form>
