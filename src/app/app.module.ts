@@ -20,6 +20,12 @@ import { ProfileComponent } from './profile/profile.component';
 import {UserService} from './_services/user.service';
 import { LpSolverTestComponent } from './lp-solver-test/lp-solver-test.component';
 import {MarkdownModule} from 'ngx-markdown';
+import { GamesFormComponent } from './games-form/games-form.component';
+import {CardModule} from "primeng/card";
+import {Dropdown, DropdownModule} from "primeng/dropdown";
+import {PanelModule} from "primeng/panel";
+import {InputTextareaModule} from 'primeng/inputtextarea';
+import {ButtonModule} from 'primeng/button';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import {MenubarModule} from "primeng/menubar";
@@ -33,6 +39,7 @@ registerLocaleData(localeFr, 'fr');
     LoginComponent,
     ProfileComponent,
     LpSolverTestComponent,
+    GamesFormComponent,
     DashboardComponent,
     PageNotFoundComponent,
   ],
@@ -45,6 +52,13 @@ registerLocaleData(localeFr, 'fr');
     MessagesModule,
     ToastModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    CardModule,
+    DropdownModule,
+    PanelModule,
+    InputTextareaModule,
+    ButtonModule
+
     ReactiveFormsModule,
     MenubarModule
   ],
