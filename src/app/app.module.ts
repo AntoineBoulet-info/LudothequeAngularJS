@@ -32,6 +32,7 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
 import {ButtonModule} from 'primeng/button';
 import {OverlayPanelModule} from "primeng/overlaypanel";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {AvatarModule} from "primeng/avatar";
 import {GamesListComponent} from "./games-list/games-list.component";
 import {GamesDetailComponent} from "./games-detail/games-detail.component";
 import {RippleModule} from "primeng/ripple";
@@ -78,7 +79,9 @@ registerLocaleData(localeFr, 'fr');
     RippleModule,
     SplitButtonModule,
     TableModule,
-    InputTextModule
+    InputTextModule,
+    ConfirmDialogModule,
+    AvatarModule
   ],
   providers: [AuthentificationService, MessageService,
     {provide: LOCALE_ID, useValue: 'fr-FR'},

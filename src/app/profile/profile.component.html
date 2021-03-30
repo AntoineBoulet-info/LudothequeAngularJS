@@ -1,9 +1,30 @@
-<h3>Profile d'un utilisateur</h3>
+<!--
+<h3>Profil</h3>
 <br>
 <div *ngIf="!loading">
-  <h2>#{{user.id}} {{user.prenom}} {{user.nom}}</h2>
+  <p> <p-avatar icon="pi pi-user" styleClass="p-mr-2" size="xlarge>" shape="circle"></p-avatar>
+&lt;!&ndash;  {{user.id}} &ndash;&gt;
+{{user.prenom}} {{user.nom}}
   <p>{{user.email}}</p>
 
-  <p>Crée : {{user.created_at | amDateFormat:'LL'}} </p>
+  <p> Crée : {{user.created_at | amDateFormat:'LL'}} </p>
   <p>Modifié : {{user.updated_at | amDateFormat:'LL'}} </p>
+</div>
+-->
+
+<div *ngIf="!loading">
+
+  <p-card header="{{user.prenom}} {{user.nom}}" subheader="Utilisateur de Gamehub" style="width: 360px" styleClass="p-card-shadow">
+    <ng-template pTemplate="header">
+      <p-avatar icon="pi pi-user" styleClass="p-mr-2" size="xxlarge>" shape="circle"></p-avatar>
+    </ng-template>
+    <p>{{user.email}}</p>
+    <p>Crée : {{user.created_at | amDateFormat:'LL'}} </p>
+    <p>Modifié : {{user.updated_at | amDateFormat:'LL'}}</p>
+
+    <ng-template pTemplate="footer">
+      <p-button label="Modifier" icon="pi pi-fw pi-pencil"></p-button>
+    </ng-template>
+
+</p-card>
 </div>

@@ -7,7 +7,7 @@ import {MenuItem} from 'primeng/api';
 // @ts-ignore
 @Component({
   selector: 'app-dashboard',
-  template: `
+  template: `<app-games-list></app-games-list>
 
   `,
   styles: [
