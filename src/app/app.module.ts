@@ -31,6 +31,12 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import {MenubarModule} from "primeng/menubar";
 import {OverlayPanelModule} from "primeng/overlaypanel";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {GamesListComponent} from "./games-list/games-list.component";
+import {GamesDetailComponent} from "./games-detail/games-detail.component";
+import {RippleModule} from "primeng/ripple";
+import {SplitButtonModule} from "primeng/splitbutton";
+import {TableModule} from "primeng/table";
+import {InputTextModule} from "primeng/inputtext";
 
 
 registerLocaleData(localeFr, 'fr');
@@ -44,6 +50,8 @@ registerLocaleData(localeFr, 'fr');
     GamesFormComponent,
     DashboardComponent,
     PageNotFoundComponent,
+    GamesListComponent,
+    GamesDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +71,11 @@ registerLocaleData(localeFr, 'fr');
     MenubarModule,
     ButtonModule,
     OverlayPanelModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    RippleModule,
+    SplitButtonModule,
+    TableModule,
+    InputTextModule
   ],
   providers: [AuthentificationService, MessageService,
     {provide: LOCALE_ID, useValue: 'fr-FR'},

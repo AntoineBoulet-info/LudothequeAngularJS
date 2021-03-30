@@ -99,12 +99,8 @@ import {Editeur} from "../_models/editeur";
             <input id="duree" type="text" pInputText placeholder="duree" formControlName="duree">
             <div *ngIf="duree.invalid && (duree.dirty || duree.touched)" class="mat-error">
               <div *ngIf="duree?.errors.required" style="color: crimson">La durée est obligatoire</div>
-              <div *ngIf="duree?.errors.minlength" style="color:crimson">La durée est obligatoire</div>
             </div>
           </div>
-
-
-
 
 
           <button pButton type="submit" label="Valide" [disabled]="!formulaire.valid"></button>

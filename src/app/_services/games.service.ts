@@ -1,4 +1,4 @@
-import {Injectable, Input} from '@angular/core';
+import {Injectable, Input, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Game} from '../_models/game';
 import {Observable, of} from 'rxjs';
@@ -14,13 +14,15 @@ export class GamesService{
   game: Game[];
 
 
+
+
   constructor(private http: HttpClient) {
     this.map = new Map();
     this.game.forEach((x: Game) => this.map.set(x.id, x));
   }
 
-  getGame(id: number): Game {
-    return this.map.get(id);
+  getGame(): Game[] {
+    return this.game;
   }
 
   getGamesObs(): Observable<Game[]> {
@@ -38,6 +40,7 @@ export class GamesService{
         }),
       );
   }
+
 
 
 
