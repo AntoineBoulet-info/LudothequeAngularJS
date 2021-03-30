@@ -7,5 +7,12 @@
 <router-outlet></router-outlet>
 
 <p-toast position="top-right" key="main"></p-toast>
+<p-menubar [model]="items">
+  <!--      <ng-template pTemplate="end">
+          <input type="text" pInputText placeholder="Search">
+        </ng-template>-->
+  <button type="button" pButton label="Logout" icon="pi pi-power-off" style="margin-left:.25em"></button>
+
+</p-menubar>
 
 <button (click)="show()">test</button>
