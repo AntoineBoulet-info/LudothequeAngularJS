@@ -33,8 +33,8 @@ export class GamesListComponent implements OnInit {
   tri: number;
   game$: Observable<Game[]>;
   game: Game[];
-
-  constructor(protected service: GamesService) {
+  service: GamesService;
+  constructor() {
     // this.game = service.getGame();
   }
 
