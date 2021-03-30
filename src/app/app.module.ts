@@ -21,6 +21,7 @@ import {UserService} from './_services/user.service';
 import { LpSolverTestComponent } from './lp-solver-test/lp-solver-test.component';
 import {MarkdownModule} from 'ngx-markdown';
 
+
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
@@ -28,7 +29,7 @@ registerLocaleData(localeFr, 'fr');
     AppComponent,
     LoginComponent,
     ProfileComponent,
-    LpSolverTestComponent
+    LpSolverTestComponent,
   ],
   imports: [
     BrowserModule,
