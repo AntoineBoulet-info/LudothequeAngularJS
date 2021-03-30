@@ -17,6 +17,7 @@ import {Editeur} from '../_models/editeur';
             <div *ngIf="nom.invalid && (nom.dirty || nom.touched)" class="mat-error">
               <div *ngIf="nom?.errors.required" style="color: crimson">Le nom est obligatoire</div>
               <div *ngIf="nom?.errors.minlength" style="color:crimson">Le nom doit comporter au moins 10 caractères</div>
+<!--              //todo block int for this label -->
             </div>
           </div>
           <div class="p-fluid forms-grid" style="margin: 1em 0">
@@ -43,6 +44,10 @@ import {Editeur} from '../_models/editeur';
             <label for="mecanique" class="p-sr-only">Mecanique</label>
             <p-dropdown id="mecanique" name="mecanique" optionLabel="nom" optionValue="nom" [options]="theme"
                         formControlName="mecanique"></p-dropdown>
+          </div>
+          <div class="p-field">
+            <label for="url_media" class="p-sr-only">Photo</label>
+            <option [value]="url_media"></option>
           </div>
           <div class="p-field">
             <label for="categorie" class="p-sr-only">Categorie</label>
@@ -170,6 +175,7 @@ export class GamesFormComponent implements OnInit {
 
   onSubmit(): void {
     this.game = { ...this.game, ...this.formulaire.value};
+    console.log(this.game);
   }
 
 
