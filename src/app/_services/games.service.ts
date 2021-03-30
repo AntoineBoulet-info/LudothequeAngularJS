@@ -2,7 +2,7 @@ import {Injectable, Input, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Game} from '../_models/game';
 import {Observable, of} from 'rxjs';
-import {catchError, map } from 'rxjs/operators';
+import {catchError, map, tap} from 'rxjs/operators';
 
 
 
@@ -36,6 +36,23 @@ export class GamesService{
           console.log('Erreur http : ', err);
           return of([]);
         }),
+      );
+  }
+
+  createGame(game: Game): Observable<Game> {
+    const url = 'http://localhost:8000/api/jeux';
+    console.log(url);
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    };
+    return this.http.post<any>(url, game, httpOptions)
+      .pipe(
+        map(res => res.data.item),
+        tap(body => console.log(body)),
+        catchError(err => {
+          console.log('Erreur http : ', err);
+          return of(undefined);
+        })
       );
   }
 

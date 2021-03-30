@@ -8,7 +8,7 @@ import {Observable, of} from 'rxjs';
   selector: 'app-games-list',
   template: `
     <p-splitButton label="Tri" icon="pi pi-check" iconPos="right" [model]="items"></p-splitButton>
-    <p-table>[value]="game"</p-table>
+    <p-table [value]="game"></p-table>
     <ng-template pTemplate="body" let-gamesService>
       <p-card header="{{gamesService.nom}}" subheader="{{gamesService.theme}}" [style]="{width: '360px'}" styleClass="p-card-shadow">
         <ng-template pTemplate="header">
@@ -41,7 +41,7 @@ export class GamesListComponent implements OnInit {
   ngOnInit(): void {
     const games: Game[] = [];
     this.service.getGamesObs().subscribe(
-      val => console.log(val),
+      val => console.log(val), // check if the game is pushed
       err => console.log(err),
       () => this.game$ = of(games)
     );

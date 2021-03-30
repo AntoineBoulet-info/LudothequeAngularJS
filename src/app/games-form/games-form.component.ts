@@ -65,17 +65,9 @@ import {Editeur} from "../_models/editeur";
           <div class="p-fluid forms-grid" style="margin: 1em 0">
             <label for="nombre_joueurs" class="p-sr-only">Nombre de joueurs</label>
             <input id="nombre_joueurs" type="text" pInputText placeholder="Nombre de joueurs" formControlName="nombre_joueurs">
-            <div *ngIf="nombre_joueurs.invalid && (nom.dirty || nom.touched)" class="mat-error">
+            <div *ngIf="nombre_joueurs.invalid && (nombre_joueurs.dirty || nombre_joueurs.touched)" class="mat-error">
               <div *ngIf="nombre_joueurs?.errors.required" style="color: crimson">Le nombre de joueurs est obligatoire</div>
               <div *ngIf="nombre_joueurs?.errors.minlength" style="color:crimson">Le nombre de joueurs est entre 2 et 8 </div>
-            </div>
-          </div>
-          <div class="p-fluid forms-grid" style="margin: 1em 0">
-            <label for="age" class="p-sr-only">Age</label>
-            <input id="age" type="text" pInputText placeholder="Age" formControlName="age">
-            <div *ngIf="age.invalid && ( age.dirty || age.touched)" class="mat-error">
-              <div *ngIf="age?.errors.required" style="color: crimson">L'âge est obligatoire</div>
-              <div *ngIf="age?.errors.minlength" style="color:crimson">L'âge doit être compris entre 1 et 16 ans </div>
             </div>
           </div>
           <div class="p-fluid forms-grid" style="margin: 1em 0">
@@ -102,7 +94,6 @@ import {Editeur} from "../_models/editeur";
             </div>
           </div>
 
-
           <button pButton type="submit" label="Valide" [disabled]="!formulaire.valid"></button>
 
         </p-panel>
@@ -116,9 +107,27 @@ import {Editeur} from "../_models/editeur";
   ]
 })
 export class GamesFormComponent implements OnInit {
-  @Input() Game: Game;
+  // @Input() Game: Game;
   titre: string;
+  game: Game = {
+    id: null,
+    nom: null,
+    description: null,
+    theme: null,
+    editeur: null,
+    user: null,
+    mecanique: null,
+    url_media: null,
+    categorie: null,
+    regles: null,
+    langue: null,
+    nombre_joueurs: null,
+    age: null,
+    poids: null,
+    duree: null
+  };
 
+  // TODO THEME
   theme: Theme[] = [{id: 1, nom: 'Suspense'},
     {id: 2, nom: 'Adventure'},
     {id: 3, nom: 'Cars'},
@@ -130,6 +139,7 @@ export class GamesFormComponent implements OnInit {
     {id: 9, nom: 'Economic'},
     {id: 10, nom: 'Cycling'},
   ];
+
   editeur: Editeur[] = [{id: 1, nom: 'Suspense'},
     {id: 2, nom: 'Adventure'},
 
@@ -159,7 +169,7 @@ export class GamesFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.info(this.formulaire.value);
+    this.game = { ...this.game, ...this.formulaire.value};
   }
 
 
