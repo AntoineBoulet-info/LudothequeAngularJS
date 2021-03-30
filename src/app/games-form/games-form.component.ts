@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Game} from '../_models/game';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Theme} from '../_models/theme';
-import {Editeur} from "../_models/editeur";
+import {Editeur} from '../_models/editeur';
 
 
 @Component({
@@ -201,7 +201,7 @@ export class GamesFormComponent implements OnInit {
     return this.formulaire.get('duree');
   }
 
-  get age() : AbstractControl {
+  get age(): AbstractControl {
     return this.formulaire.get('age');
   }
 

@@ -1,8 +1,9 @@
 import {Injectable, Input, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Game} from '../_models/game';
-import {Observable, of} from 'rxjs';
-import {catchError, map, tap} from 'rxjs/operators';
+import {Observable, of, throwError} from 'rxjs';
+import {catchError, map, shareReplay, tap} from 'rxjs/operators';
+import {environment} from '../../environments/environment';
 
 
 
@@ -39,6 +40,7 @@ export class GamesService{
       );
   }
 
+
   createGame(game: Game): Observable<Game> {
     const url = 'http://localhost:8000/api/jeux';
     console.log(url);
@@ -54,6 +56,32 @@ export class GamesService{
           return of(undefined);
         })
       );
+  }
+
+  postGame(game: Game): void {
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    };
+    this.http.post(environment.apiUrl + '/jeux', {
+      nom: game.nom,
+      description: game.description,
+      theme: game.theme,
+      editeur: game.editeur,
+      url_media: game.url_media,
+      langue: game.langue,
+      age: game.age,
+      poids: game.poids,
+      nombre_joueurs: game.nombre_joueurs,
+      duree: game.duree,
+      categories: game.categorie,
+      mecanique: game.mecanique
+    }, httpOptions).pipe(
+      tap(rep => console.log(rep)),
+      shareReplay(),
+      catchError(err => {
+        return throwError(err);
+        // return of('');
+      }));
   }
 
 

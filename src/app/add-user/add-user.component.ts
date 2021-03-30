@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthentificationService} from '../_services/authentification.service';
 import {Router} from '@angular/router';
 
@@ -88,24 +88,24 @@ export class AddUserComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  get nom(){
+  get nom(): AbstractControl{
     return this.formulaire.get('nom');
   }
-  get prenom(){
+  get prenom(): AbstractControl{
     return this.formulaire.get('prenom');
   }
-  get pseudo(){
+  get pseudo(): AbstractControl{
     return this.formulaire.get('pseudo');
   }
-  get email(){
+  get email(): AbstractControl{
     return this.formulaire.get('email');
   }
-  get password(){
+  get password(): AbstractControl {
     return this.formulaire.get('password');
   }
 
 
-  onSubmit() {
+  onSubmit(): void {
     this.user = {...this.user, ...this.formulaire.value};
     this.loading = true;
     this.authService.createUser(this.user);
