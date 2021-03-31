@@ -11,13 +11,11 @@ import {environment} from '../../environments/environment';
   providedIn: 'root'
 })
 export class GamesService{
-  map: Map<number, Game>;
   game: Game[];
 
 
   constructor(private http: HttpClient) {
-    this.map = new Map();
-    this.game.forEach((x: Game) => this.map.set(x.id, x));
+
   }
 
   getGame(): Game[] {
@@ -33,6 +31,7 @@ export class GamesService{
     return this.http.get<any>(url, httpOptions)
       .pipe(
         map(res => res.data.item),
+        tap(val => console.log(val)),
         catchError(err => {
           console.log('Erreur http : ', err);
           return of([]);

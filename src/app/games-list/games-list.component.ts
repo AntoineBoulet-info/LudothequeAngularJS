@@ -8,22 +8,23 @@ import {Observable, of} from 'rxjs';
   selector: 'app-games-list',
   template: `
     <p-splitButton label="Tri" icon="pi pi-check" iconPos="right" [model]="items"></p-splitButton>
-    <p-table [value]="game"></p-table>
-    <ng-template pTemplate="body" let-gamesService>
-      <p-card header="{{gamesService.nom}}" subheader="{{gamesService.theme}}" [style]="{width: '360px'}" styleClass="p-card-shadow">
+    <p-table [value]="game$ | async">
+    <ng-template pTemplate="body" let-game>
+      <p-card header="{{game.nom}}" subheader="{{game.theme}}" [style]="{width: '360px'}" styleClass="p-card-shadow">
         <ng-template pTemplate="header">
-          <img alt="Card" src="{{gamesService.url_media}}">
+          <img alt="Card" src="{{game.url_media}}">
         </ng-template>
         <ul>
-          <li>Durée : {{gamesService.duree}}</li>
-          <li>Nombre joueurs : {{gamesService.nombre_joueurs}}</li>
-          <li>Age minimum : {{gamesService.age}}</li>
+          <li>Durée : {{game.duree}}</li>
+          <li>Nombre joueurs : {{game.nombre_joueurs}}</li>
+          <li>Age minimum : {{game.age}}</li>
         </ul>
         <ng-template pTemplate="footer">
-          <button type="button" pButton pRipple icon="pi pi-search" [routerLink]="['/games', gamesService.id]"></button>
+          <button type="button" pButton pRipple icon="pi pi-search" [routerLink]="['/games', game.id]"></button>
         </ng-template>
       </p-card>
     </ng-template>
+    </p-table>
   `,
   styles: [
   ]
@@ -32,9 +33,7 @@ export class GamesListComponent implements OnInit {
   items: MenuItem[];
   tri: number;
   game$: Observable<Game[]>;
-  game: Game[];
-  service: GamesService;
-  constructor() {
+  constructor(private service: GamesService) {
     // this.game = service.getGame();
   }
 
@@ -49,13 +48,8 @@ export class GamesListComponent implements OnInit {
           // this.games = this.service.getGame(this.tri);
         }},
     ];
-    const games: Game[] = [];
-    this.service.getGamesObs().subscribe(
-      val => console.log(val), // check if the game is pushed
-      err => console.log(err),
-      () => this.game$ = of(games)
-    );
-    this.game = games;
+    this.game$ = this.service.getGamesObs();
+    console.log(this.game$);
   }
 
 }
