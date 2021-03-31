@@ -7,6 +7,7 @@ import {environment} from '../../environments/environment';
 import {Theme} from "../_models/theme";
 import {Mecaniques} from "../_models/mecaniques";
 import {Editeur} from "../_models/editeur";
+import {ANONYMOUS_USER} from "./authentification.service";
 
 
 
@@ -223,11 +224,11 @@ export class GamesService{
       );
   }
 
-  postGame(game: Game): void {
+  postGame(nom: string, description: string, theme: Theme, editeur: Editeur, langue: string, age: number, poids: number, nombre_joueurs: number, categorie: string, duree: number, regles: string): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
     };
-    this.http.post(environment.apiUrl + '/jeux', {
+/*    this.http.post(environment.apiUrl + '/jeux', {
       nom: game.nom,
       description: game.description,
       theme: game.theme,
@@ -244,7 +245,23 @@ export class GamesService{
       catchError(err => {
         return throwError(err);
         // return of('');
-      }));
+      }));*/
+
+    console.log('Create Game');
+    // tslint:disable-next-line:max-line-length
+    return this.http.post<any>(`${environment.apiUrl}jeux`, {nom, description, theme, editeur, langue, age, poids, nombre_joueurs, categorie, duree, regles}, httpOptions)
+      .pipe(
+        tap(rep => console.log(rep)),
+        map(rep => {
+          const game = {game: rep.data.value, jwtToken: rep.data.token};
+          console.log('User registered: ', game);
+          return game;
+        }),
+        shareReplay(),
+        catchError(err => {
+          return throwError('bug');
+          // return of('');
+        }));
   }
 
 

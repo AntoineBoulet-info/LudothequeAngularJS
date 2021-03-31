@@ -60,7 +60,7 @@ import {MessageService} from 'primeng/api';
           </div>
         </div>
       </div>
-      <button [disabled]="!formulaire.valid" class="ButtonVal" >Valide</button>
+      <button [disabled]="formulaire.valid" class="ButtonVal" >Valide</button>
     </form>
     </div>
   `,

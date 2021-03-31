@@ -110,6 +110,7 @@ export class AuthentificationService {
 
   createUser(pseudo: string, nom: string, prenom: string, email: string, password: string ): Observable<any> {
     // const url = `http://localhost:8000/api/register`;
+    console.log('Create User');
     return this.http.post<any>(`${environment.apiUrl}/auth/register`, {pseudo, nom, prenom, email, password}, httpOptions)
       .pipe(
         tap(rep => console.log(rep)),
