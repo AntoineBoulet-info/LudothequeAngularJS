@@ -60,6 +60,8 @@ import {CarouselModule} from 'primeng/carousel';
         width: 50%;
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
       }
+      
+      
 /*      .footer-clean .copyright {
         margin-top:14px;
         margin-bottom:0;

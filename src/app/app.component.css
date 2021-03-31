@@ -15,3 +15,7 @@
   display: inline-block;
   border-radius: 10px;
 }
+.p-menubar{
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(68,170,198,1) 12%, rgba(0,212,255,1) 100%);
+}

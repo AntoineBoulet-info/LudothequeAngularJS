@@ -61,7 +61,7 @@ export class GamesListComponent implements OnInit {
           this.tri = 1;
           this.game$ = this.service.getSortGame(this.tri);
         }},
-      {label: 'Reset Tri', icon: 'pi pi-check', command: () => {
+      {label: 'Réinitialiser Tri', icon: 'pi pi-check', command: () => {
           this.game$ = this.service.getGamesObs();
         }},
     ];

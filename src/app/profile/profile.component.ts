@@ -4,9 +4,9 @@ import {UserInfo} from '../_models/user-info';
 import {Observable} from 'rxjs';
 import {MessageService} from 'primeng/api';
 import {Router} from '@angular/router';
-import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
-import {GamesService} from "../_services/games.service";
-import {Game} from "../_models/game";
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
+import {GamesService} from '../_services/games.service';
+import {Game} from '../_models/game';
 
 @Component({
   selector: 'app-profile',
@@ -25,6 +25,7 @@ export class ProfileComponent implements OnInit {
   loading: boolean;
   user: UserInfo;
 
+  // tslint:disable-next-line:max-line-length
   constructor(private userService: UserService, private messageService: MessageService, private router: Router, private service: GamesService) {
     this.loading = false;
   }

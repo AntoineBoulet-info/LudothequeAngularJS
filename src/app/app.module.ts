@@ -9,7 +9,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AuthentificationService} from './_services/authentification.service';
 import {MessagesModule} from 'primeng/messages';
 import {ToastModule} from 'primeng/toast';
-import {MessageService} from 'primeng/api';
+import {ConfirmationService, MessageService} from 'primeng/api';
 import {registerLocaleData} from '@angular/common';
 import {MomentModule} from 'ngx-moment';
 import 'moment/locale/fr';
@@ -93,7 +93,8 @@ registerLocaleData(localeFr, 'fr');
   providers: [AuthentificationService, MessageService,
     {provide: LOCALE_ID, useValue: 'fr-FR'},
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
-    UserService
+    UserService,
+    ConfirmationService
   ],
   bootstrap: [AppComponent]
 })
