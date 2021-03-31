@@ -1,0 +1,18 @@
+.buttonVal {
+  border: none;
+  border-radius: 0;
+  color: #fff !important;
+  font-size: 16px;
+  outline: none;
+  padding: 12px 20px;
+  background: #2fb8f8;
+  text-decoration: none !important;
+  display: inline-block;
+  margin: 5px;
+  border-radius: 10px;
+}
+
+.buttonVal:hover {
+  background-color: #82D0F6;
+  color: white;
+}

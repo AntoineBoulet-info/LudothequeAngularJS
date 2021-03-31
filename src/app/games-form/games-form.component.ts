@@ -8,7 +8,8 @@ import {Editeur} from '../_models/editeur';
 @Component({
   selector: 'app-games-form',
   template: `
-    <p-card header="Games" [style]="{'width': '50rem', 'margin-bottom': '2em'}">
+    <div style="display: flex; justify-content: center; align-items: center; margin-top: 3%">
+    <p-card header="Games" [style]="{'width': '50rem', 'margin-bottom': '2em'}" >
       <form [formGroup]="formulaire" (ngSubmit)="onSubmit()">
         <p-panel [header]="titre">
           <div class="p-fluid forms-grid" style="margin: 1em 0">
@@ -107,6 +108,7 @@ import {Editeur} from '../_models/editeur';
         Saisir les informations d'un jeu
       </ng-template>
     </p-card>
+    </div>
   `,
   styles: [
   ]
