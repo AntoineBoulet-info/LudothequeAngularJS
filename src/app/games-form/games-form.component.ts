@@ -3,9 +3,9 @@ import {Game} from '../_models/game';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Theme} from '../_models/theme';
 import {Editeur} from '../_models/editeur';
-import {Observable, of} from "rxjs";
-import {Mecaniques} from "../_models/mecaniques";
-import {GamesService} from "../_services/games.service";
+import {Observable, of} from 'rxjs';
+import {Mecaniques} from '../_models/mecaniques';
+import {GamesService} from '../_services/games.service';
 
 
 @Component({
@@ -35,7 +35,7 @@ import {GamesService} from "../_services/games.service";
           <div class="p-formgroup-inline">
             <div class="p-field">
               <label for="theme" class="p-sr-only">Thème</label> Thème :
-              <p-dropdown id="theme" name="theme" optionLabel="nom" optionValue="nom" [options]="theme$ | async"
+              <p-dropdown id="theme" name="theme" optionLabel="id, nom" optionValue="nom" [options]="theme$ | async"
                           formControlName="theme"></p-dropdown>
             </div>
           </div>
@@ -159,11 +159,11 @@ export class GamesFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    //this.game = { ...this.game, ...this.formulaire.value};
-    //console.log(this.game);
+    // this.game = { ...this.game, ...this.formulaire.value};
+    // console.log(this.game);
     console.log(this.formulaire.value);
-    this.service.postGame(this.Game);
-    console.log(this.service.postGame(this.Game));
+    // this.service.postGame(this.formulaire.get('nom'), this.formulaire.get('description'), this.formulaire.get('theme'), this.formulaire.get('editeur'), this.formulaire.get('') );
+    // console.log(this.service.postGame(this.Game));
 
   }
 
