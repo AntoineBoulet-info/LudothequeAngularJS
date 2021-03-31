@@ -24,8 +24,8 @@
     <p>Modifié : {{user.updated_at | amDateFormat:'LL'}}</p>
 
     <ng-template pTemplate="footer">
-      <p-button label="Mes jeux" icon="pi pi-fw pi-pencil"></p-button>
-      <p-button label="Modifier" icon="pi pi-fw pi-pencil"></p-button>
+      <p-button label="Mes jeux" icon="pi pi-fw pi-pencil" [routerLink]="['/profilegame']" ></p-button>
+      <p-button label="Modifier" icon="pi pi-fw pi-pencil" [routerLink]="['/profileedit']" ></p-button>
     </ng-template>
 
 
@@ -67,7 +67,7 @@
         </div>
       </div>
 
-      <button pButton type="submit" label="Valide" [disabled]="!formulaire.valid"></button>
+      <button pButton type="submit" label="Valide" [disabled]="!formulaire.valid" [routerLink]="['/gamevalid']" ></button>
 
     </form>
   </p-panel>
