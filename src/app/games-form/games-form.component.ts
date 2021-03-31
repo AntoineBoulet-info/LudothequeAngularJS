@@ -6,6 +6,7 @@ import {Editeur} from '../_models/editeur';
 import {Observable, of} from 'rxjs';
 import {Mecaniques} from '../_models/mecaniques';
 import {GamesService} from '../_services/games.service';
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -26,7 +27,7 @@ import {GamesService} from '../_services/games.service';
           </div>
           <div class="p-fluid forms-grid" style="margin: 1em 0">
             <label for="description" class="p-sr-only">Description</label>
-            <textarea id="description" [rows]="5" [cols]="30" type="textarea" pInputTextarea placeholder="Description"
+            <textarea id="description" [rows]="5" [cols]="30" type="textarea" formControlName="description" pInputTextarea placeholder="Description"
                       autoResize="autoResize"></textarea>
             <div *ngIf="description.invalid && (description.dirty || description.touched)" class="mat-error">
               <div *ngIf="description?.errors.required" style="color: crimson">La description est obligatoire</div>
@@ -35,18 +36,18 @@ import {GamesService} from '../_services/games.service';
           <div class="p-formgroup-inline">
             <div class="p-field">
               <label for="theme" class="p-sr-only">Thème</label> Thème :
-              <p-dropdown id="theme" name="theme" optionLabel="nom" optionValue="nom" [options]="theme$ | async"
+              <p-dropdown id="theme" name="theme" optionLabel="nom" optionValue="id" [options]="theme$ | async"
                           formControlName="theme"></p-dropdown>
             </div>
           </div>
           <div class="p-field">
             <label for="editeur" class="p-sr-only">Editeur</label> Editeur :
-            <p-dropdown id="editeur" name="editeur" optionLabel="nom" optionValue="nom" [options]="editeur$ | async"
+            <p-dropdown id="editeur" name="editeur" optionLabel="nom" optionValue="id" [options]="editeur$ | async"
                         formControlName="editeur"></p-dropdown>
           </div>
           <div class="p-field">
             <label for="mecanique" class="p-sr-only">Mécanique</label> Mécanique :
-            <p-dropdown id="mecanique" name="mecanique" optionLabel="nom" optionValue="nom" [options]="mecaniques$ |async"
+            <p-dropdown id="mecanique" name="mecanique" optionLabel="nom" optionValue="id" [options]="mecaniques$ |async"
                         formControlName="mecanique"></p-dropdown>
           </div>
           <div class="p-fluid forms-grid" style="margin: 1em 0">
@@ -59,7 +60,7 @@ import {GamesService} from '../_services/games.service';
           </div>
           <div class="p-fluid forms-grid" style="margin: 1em 0">
             <label for="regles" class="p-sr-only">Règles du jeu</label>
-            <textarea id="regles" [rows]="5" [cols]="30" type="textarea" pInputTextarea placeholder="Regles"
+            <textarea id="regles" [rows]="5" [cols]="30" type="textarea" formControlName="regles" pInputTextarea placeholder="Regles"
                       autoResize="autoResize"></textarea>
             <div *ngIf="regles.invalid && (regles.dirty || regles.touched)" class="mat-error">
               <div *ngIf="regles?.errors.required" style="color: #dc143c">La règle du jeu est obligatoire</div>
@@ -110,7 +111,7 @@ import {GamesService} from '../_services/games.service';
             </div>
           </div>
 
-          <button pButton type="submit" label="Valide"  [disabled]="formulaire.valid"></button>
+          <button pButton type="submit" label="Valide" [disabled]="!formulaire.valid"></button>
 
         </p-panel>
       </form>
@@ -124,7 +125,6 @@ import {GamesService} from '../_services/games.service';
   ]
 })
 export class GamesFormComponent implements OnInit {
-  Game: Game;
   titre: string;
   editeur$: Observable<Editeur[]> ;
   theme$: Observable<Theme[]>;
@@ -133,9 +133,9 @@ export class GamesFormComponent implements OnInit {
   formulaire = new FormGroup({
     nom: new FormControl(undefined, [Validators.required, Validators.minLength(10), Validators.maxLength(100)]),
     description: new FormControl(undefined, [Validators.required]),
-    theme: new FormControl(''),
-    editeur: new FormControl(''),
-    mecanique: new FormControl(''),
+    theme: new FormControl(1),
+    editeur: new FormControl(1),
+    mecanique: new FormControl(1),
     categorie: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]),
     regles: new FormControl(undefined, [Validators.required]),
     langue: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z]+$'), Validators.minLength(3)]),
@@ -145,27 +145,46 @@ export class GamesFormComponent implements OnInit {
     duree: new FormControl(undefined, [Validators.required, Validators.pattern('[0-9]*')]),
   });
 
+  Game: any = {
+    nom: null,
+    description: null,
+    theme: null,
+    editeur: null,
+    langue: null,
+    age: null,
+    poids: null,
+    nombre_joueurs: null,
+    categorie: null,
+    duree: null,
+    regles: null,
+    mecaniques: null
+  };
 
-  constructor(private service: GamesService) {
+  returnUrl: string;
+  error = '';
+
+  loading: boolean;
+
+
+  constructor(private service: GamesService, private router: Router) {
   }
 
   ngOnInit(): void {
-
     this.editeur$ = this.service.getEditeurObs();
     this.theme$ = this.service.getThemeObs();
     this.mecaniques$ = this.service.getMecanicsObs();
 
 
+
   }
 
   onSubmit(): void {
-    // this.game = { ...this.game, ...this.formulaire.value};
-    // console.log(this.game);
-    console.log(this.formulaire.value);
-    // this.service.postGame(this.formulaire.get('nom'), this.formulaire.get('description'), this.formulaire.get('theme'), this.formulaire.get('editeur'), this.formulaire.get('') );
-    // console.log(this.service.postGame(this.Game));
+    this.service.postGame(this.formulaire.value).subscribe(value => console.log(value));
+    this.router.navigateByUrl('');
 
   }
+
+
 
 
   get nom(): AbstractControl {

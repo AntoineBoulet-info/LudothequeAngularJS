@@ -224,7 +224,7 @@ export class GamesService{
       );
   }
 
-  postGame(nom: string, description: string, theme: Theme, editeur: Editeur, langue: string, age: number, poids: number, nombre_joueurs: number, categorie: string, duree: number, regles: string): Observable<any> {
+  postGame(Game: any): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
     };
@@ -249,8 +249,9 @@ export class GamesService{
 
     console.log('Create Game');
     // tslint:disable-next-line:max-line-length
-    console.log(nom, description, theme, editeur, langue, age, poids, nombre_joueurs, categorie, duree, regles);
-    return this.http.post<any>(`${environment.apiUrl}/jeux`, {nom, description, theme, editeur, langue, age, poids, nombre_joueurs, categorie, duree, regles}, httpOptions)
+    //console.log(nom, description, theme, editeur, langue, age, poids, nombre_joueurs, categorie, duree, regles);
+    console.log(Game);
+    return this.http.post<any>(`${environment.apiUrl}/jeux`, Game, httpOptions)
       .pipe(
         tap(rep => console.log(rep)),
         map(rep => {
@@ -260,6 +261,7 @@ export class GamesService{
         }),
         shareReplay(),
         catchError(err => {
+          console.log(err);
           return throwError('bug');
           // return of('');
         }));
