@@ -4,6 +4,9 @@ import {Game} from '../_models/game';
 import {Observable, of, throwError} from 'rxjs';
 import {catchError, map, shareReplay, tap} from 'rxjs/operators';
 import {environment} from '../../environments/environment';
+import {Theme} from "../_models/theme";
+import {Mecaniques} from "../_models/mecaniques";
+import {Editeur} from "../_models/editeur";
 
 
 
@@ -12,15 +15,15 @@ import {environment} from '../../environments/environment';
 })
 export class GamesService{
   game: Game[];
+  theme: Theme[];
+  mecanique: Mecaniques[];
+  editeur: Editeur[];
 
 
   constructor(private http: HttpClient) {
 
   }
 
-  getGame(): Game[] {
-    return this.game;
-  }
 
   getGamesObs(): Observable<Game[]> {
     const url = 'http://localhost:8000/api/jeux';
@@ -31,6 +34,54 @@ export class GamesService{
     return this.http.get<any>(url, httpOptions)
       .pipe(
         map(res => res.data.item),
+        tap(val => console.log(val)),
+        catchError(err => {
+          console.log('Erreur http : ', err);
+          return of([]);
+        }),
+      );
+  }
+  getThemeObs(): Observable<Theme[]> {
+    const url = 'http://localhost:8000/api/themes';
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    };
+    // @ts-ignore
+    return this.http.get<any>(url, httpOptions)
+      .pipe(
+        map(res => res.data.items),
+        tap(val => console.log(val)),
+        catchError(err => {
+          console.log('Erreur http : ', err);
+          return of([]);
+        }),
+      );
+  }
+  getEditeurObs(): Observable<Editeur[]> {
+    const url = 'http://localhost:8000/api/editeurs';
+    console.log("test");
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    };
+    return this.http.get<any>(url, httpOptions)
+      .pipe(
+        map(res => res.data.items),
+        tap(val => console.log(val)),
+        catchError(err => {
+          console.log(err);
+          return of([]);
+        }),
+      );
+  }
+  getMecanicsObs(): Observable<Mecaniques[]> {
+    const url = 'http://localhost:8000/api/mecanics';
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    };
+    // @ts-ignore
+    return this.http.get<any>(url, httpOptions)
+      .pipe(
+        map(res => res.data.items),
         tap(val => console.log(val)),
         catchError(err => {
           console.log('Erreur http : ', err);

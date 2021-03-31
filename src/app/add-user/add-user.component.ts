@@ -76,7 +76,7 @@ export class AddUserComponent implements OnInit {
   formulaire = new FormGroup(
     {
       nom: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]),
-      prenom: new FormControl('',[Validators.required, Validators.minLength(2), Validators.maxLength(100)]),
+      prenom: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]),
       pseudo: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]),
       email: new FormControl('', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}$')]),
       password: new FormControl('', [Validators.required, Validators.minLength(8)]), // Validators.pattern('[A-Z]+[0-9]*')]),

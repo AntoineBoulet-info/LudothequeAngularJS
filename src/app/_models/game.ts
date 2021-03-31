@@ -1,6 +1,7 @@
 import {Theme} from './theme';
 import {Editeur} from './editeur';
 import {User} from './user';
+import {Mecaniques} from "./mecaniques";
 
 export interface Game {
   id: number;
@@ -9,7 +10,7 @@ export interface Game {
   theme: Theme;
   editeur: Editeur;
   user: User;
-  mecanique: string;
+  mecanique: Mecaniques;
   url_media: string;
   categorie: string;
   regles: string;

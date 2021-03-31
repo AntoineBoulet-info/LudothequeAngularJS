@@ -3,6 +3,9 @@ import {Game} from '../_models/game';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Theme} from '../_models/theme';
 import {Editeur} from '../_models/editeur';
+import {Observable, of} from "rxjs";
+import {Mecaniques} from "../_models/mecaniques";
+import {GamesService} from "../_services/games.service";
 
 
 @Component({
@@ -31,29 +34,32 @@ import {Editeur} from '../_models/editeur';
           </div>
           <div class="p-formgroup-inline">
             <div class="p-field">
-              <label for="theme" class="p-sr-only">Theme</label>
-              <p-dropdown id="theme" name="theme" optionLabel="nom" optionValue="nom" [options]="theme"
+              <label for="theme" class="p-sr-only">Thème</label> Thème :
+              <p-dropdown id="theme" name="theme" optionLabel="nom" optionValue="nom" [options]="theme$ | async"
                           formControlName="theme"></p-dropdown>
             </div>
           </div>
           <div class="p-field">
-            <label for="editeur" class="p-sr-only">Editeur</label>
-            <p-dropdown id="editeur" name="editeur" optionLabel="nom" optionValue="nom" [options]="editeur"
+            <label for="editeur" class="p-sr-only">Editeur</label> Editeur :
+            <p-dropdown id="editeur" name="editeur" optionLabel="nom" optionValue="nom" [options]="editeur$ | async"
                         formControlName="editeur"></p-dropdown>
           </div>
           <div class="p-field">
-            <label for="mecanique" class="p-sr-only">Mecanique</label>
-            <p-dropdown id="mecanique" name="mecanique" optionLabel="nom" optionValue="nom" [options]="theme"
+            <label for="mecanique" class="p-sr-only">Mécanique</label> Mécanique :
+            <p-dropdown id="mecanique" name="mecanique" optionLabel="nom" optionValue="nom" [options]="mecaniques$ |async"
                         formControlName="mecanique"></p-dropdown>
           </div>
           <div class="p-field">
             <label for="url_media" class="p-sr-only">Photo</label>
-            <option [value]="url_media"></option>
+            <option value="url_media" ></option>
           </div>
-          <div class="p-field">
-            <label for="categorie" class="p-sr-only">Categorie</label>
-            <p-dropdown id="categorie" name="categorie" optionLabel="nom" optionValue="nom" [options]="theme"
-                        formControlName="categorie"></p-dropdown>
+          <div class="p-fluid forms-grid" style="margin: 1em 0">
+            <label for="categorie" class="p-sr-only">Catégorie</label>
+            <input id="categorie" type="text" pInputText placeholder="Categorie" formControlName="categorie">
+            <div *ngIf="categorie.invalid && (categorie.dirty || categorie.touched)" class="mat-error">
+              <div *ngIf="categorie?.errors.required" style="color: crimson">La catégorie est obligatoire</div>
+              <div *ngIf="categorie?.errors.pattern" style="color:crimson"> Uniquement des lettres !  </div>
+            </div>
           </div>
           <div class="p-fluid forms-grid" style="margin: 1em 0">
             <label for="regles" class="p-sr-only">Règles du jeu</label>
@@ -63,10 +69,13 @@ import {Editeur} from '../_models/editeur';
               <div *ngIf="regles?.errors.required" style="color: #dc143c">La règle du jeu est obligatoire</div>
             </div>
           </div>
-          <div class="p-field">
+          <div class="p-fluid forms-grid" style="margin: 1em 0">
             <label for="langue" class="p-sr-only">Langue</label>
-            <p-dropdown id="langue" name="langue" optionLabel="nom" optionValue="nom" [options]="theme"
-                        formControlName="langue"></p-dropdown>
+            <input id="langue" type="text" pInputText placeholder="Langue" formControlName="langue">
+            <div *ngIf="langue.invalid && (langue.dirty || langue.touched)" class="mat-error">
+              <div *ngIf="langue?.errors.required" style="color: crimson">La langue est obligatoire</div>
+              <div *ngIf="langue?.errors.pattern" style="color:crimson"> Uniquement des lettres !  </div>
+            </div>
           </div>
           <div class="p-fluid forms-grid" style="margin: 1em 0">
             <label for="nombre_joueurs" class="p-sr-only">Nombre de joueurs</label>
@@ -74,6 +83,7 @@ import {Editeur} from '../_models/editeur';
             <div *ngIf="nombre_joueurs.invalid && (nombre_joueurs.dirty || nombre_joueurs.touched)" class="mat-error">
               <div *ngIf="nombre_joueurs?.errors.required" style="color: crimson">Le nombre de joueurs est obligatoire</div>
               <div *ngIf="nombre_joueurs?.errors.minlength" style="color:crimson">Le nombre de joueurs est entre 2 et 8 </div>
+              <div *ngIf="nombre_joueurs?.errors.pattern" style="color:crimson"> Uniquement des chiffres !  </div>
             </div>
           </div>
           <div class="p-fluid forms-grid" style="margin: 1em 0">
@@ -82,21 +92,24 @@ import {Editeur} from '../_models/editeur';
             <div *ngIf="age.invalid && ( age.dirty || age.touched)" class="mat-error">
               <div *ngIf="age?.errors.required" style="color: crimson">L'âge est obligatoire</div>
               <div *ngIf="age?.errors.minlength" style="color:crimson">L'âge doit être compris entre 1 et 16 ans </div>
+              <div *ngIf="age?.errors.pattern" style="color:crimson"> Uniquement des chiffres !  </div>
             </div>
           </div>
           <div class="p-fluid forms-grid" style="margin: 1em 0">
             <label for="poids" class="p-sr-only">Poids</label>
-            <input id="poids" type="text" pInputText placeholder="poids" formControlName="poids">
+            <input id="poids" type="text" pInputText placeholder="Poids" formControlName="poids">
             <div *ngIf="poids.invalid && (poids.dirty || poids.touched)" class="mat-error">
               <div *ngIf="poids?.errors.required" style="color: crimson">Le poids est obligatoire</div>
               <div *ngIf="poids?.errors.minlength" style="color:crimson">Le poids doit être compris entre 0.100 et 5.00</div>
+              <div *ngIf="poids?.errors.pattern" style="color:crimson"> Uniquement des chiffres !  </div>
             </div>
           </div>
           <div class="p-fluid forms-grid" style="margin: 1em 0">
             <label for="duree" class="p-sr-only">Durée</label>
-            <input id="duree" type="text" pInputText placeholder="duree" formControlName="duree">
+            <input id="duree" type="text" pInputText placeholder="Duree" formControlName="duree">
             <div *ngIf="duree.invalid && (duree.dirty || duree.touched)" class="mat-error">
               <div *ngIf="duree?.errors.required" style="color: crimson">La durée est obligatoire</div>
+              <div *ngIf="duree?.errors.pattern" style="color:crimson"> Uniquement des chiffres !  </div>
             </div>
           </div>
 
@@ -116,41 +129,9 @@ import {Editeur} from '../_models/editeur';
 export class GamesFormComponent implements OnInit {
   // @Input() Game: Game;
   titre: string;
-  game: Game = {
-    id: null,
-    nom: null,
-    description: null,
-    theme: null,
-    editeur: null,
-    user: null,
-    mecanique: null,
-    url_media: null,
-    categorie: null,
-    regles: null,
-    langue: null,
-    nombre_joueurs: null,
-    age: null,
-    poids: null,
-    duree: null
-  };
-
-  // TODO THEME
-  theme: Theme[] = [{id: 1, nom: 'Suspense'},
-    {id: 2, nom: 'Adventure'},
-    {id: 3, nom: 'Cars'},
-    {id: 4, nom: 'Building'},
-    {id: 5, nom: 'Fantasy'},
-    {id: 6, nom: 'Fishing'},
-    {id: 7, nom: 'Action'},
-    {id: 8, nom: 'War'},
-    {id: 9, nom: 'Economic'},
-    {id: 10, nom: 'Cycling'},
-  ];
-
-  editeur: Editeur[] = [{id: 1, nom: 'Suspense'},
-    {id: 2, nom: 'Adventure'},
-
-  ];
+  editeur$: Observable<Editeur[]> ;
+  theme$: Observable<Theme[]>;
+  mecaniques$: Observable<Mecaniques[]>;
 
   formulaire = new FormGroup({
     nom: new FormControl(undefined, [Validators.required, Validators.minLength(10), Validators.maxLength(100)]),
@@ -159,25 +140,41 @@ export class GamesFormComponent implements OnInit {
     editeur: new FormControl(''),
     mecanique: new FormControl(''),
     url_media: new FormControl(undefined, [Validators.required]),
-    categorie: new FormControl(''),
+    categorie: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]),
     regles: new FormControl(undefined, [Validators.required]),
-    langue: new FormControl(''),
-    nombre_joueurs: new FormControl(undefined, [Validators.min(2), Validators.max(8)]),
-    age: new FormControl(undefined, [Validators.min(1), Validators.max(16)]),
-    poids: new FormControl(undefined, [Validators.required, Validators.min(0.100), Validators.max(5.00)]),
-    duree: new FormControl(undefined, [Validators.required]),
+    langue: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]),
+    nombre_joueurs: new FormControl(undefined, [Validators.min(2), Validators.max(8), Validators.pattern('[0-9]*')]),
+    age: new FormControl(undefined, [Validators.min(1), Validators.max(16), Validators.pattern('[0-9]*') ]),
+    poids: new FormControl(undefined, [Validators.required, Validators.min(0.100), Validators.max(5.00), Validators.pattern('[0-9]*')]),
+    duree: new FormControl(undefined, [Validators.required, Validators.pattern('[0-9]*')]),
   });
 
 
-  constructor() {
+  constructor(private service: GamesService) {
   }
 
   ngOnInit(): void {
+
+    this.editeur$ = this.service.getEditeurObs();
+    this.theme$ = this.service.getThemeObs();
+    this.mecaniques$ = this.service.getMecanicsObs();
+
+    /*this.service.getThemeObs().subscribe(
+      val => theme_obs.push(val),
+      err => console.log(err),
+      () => this.theme$ = of(theme_obs)
+    );
+    this.service.getMecanicsObs().subscribe(
+      val => mecanics_obs.push(val),
+      err => console.log(err),
+      () => this.mecaniques$ = of(mecanics_obs)
+    );*/
+
   }
 
   onSubmit(): void {
-    this.game = { ...this.game, ...this.formulaire.value};
-    console.log(this.game);
+    //this.game = { ...this.game, ...this.formulaire.value};
+    //console.log(this.game);
   }
 
 
@@ -211,6 +208,13 @@ export class GamesFormComponent implements OnInit {
 
   get age(): AbstractControl {
     return this.formulaire.get('age');
+  }
+  get langue(): AbstractControl{
+    return this.formulaire.get('langue');
+  }
+
+  get categorie(): AbstractControl{
+    return this.formulaire.get('categorie');
   }
 
 
