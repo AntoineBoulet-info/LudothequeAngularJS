@@ -1,0 +1,19 @@
+<br>
+<form [formGroup]="formulaire" (ngSubmit)="onSubmit()" style="text-align: center">
+  <div style="display: flex; justify-content: center; align-items: center; margin-top: 3%">
+    <div class="p-grid p-fluid p-align-center" >
+      <div class="p-col p-md-4">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+          <input id="email" type="text" pInputTex placeholder="Email">
+        </div>
+
+        <div class="p-inputgroup" style="margin-top: 10px">
+          <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+          <input id="password" type="text" pInputTex placeholder="Password">
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="buttonVal" [disabled]="!formulaire.valid">valide</button>
+</form>
