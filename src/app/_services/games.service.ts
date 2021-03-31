@@ -40,6 +40,41 @@ export class GamesService{
       );
   }
 
+  // tslint:disable-next-line:typedef
+  getSortGame(x: number){
+    // tslint:disable-next-line:triple-equals
+    if (x == 1){
+      const url = 'http://localhost:8000/api/jeux/?sort=note';
+      const httpOptions = {
+        headers: new HttpHeaders({'Content-Type': 'application/json'})
+      };
+      return this.http.get<any>(url, httpOptions)
+        .pipe(
+          map(res => res.data.item),
+          tap(val => console.log(val)),
+          catchError(err => {
+            console.log('Erreur http : ', err);
+            return of([]);
+          }),
+        );
+    }
+    else {
+      const url = 'http://localhost:8000/api/jeux/?sort=nom';
+      const httpOptions = {
+        headers: new HttpHeaders({'Content-Type': 'application/json'})
+      };
+      return this.http.get<any>(url, httpOptions)
+        .pipe(
+          map(res => res.data.item),
+          tap(val => console.log(val)),
+          catchError(err => {
+            console.log('Erreur http : ', err);
+            return of([]);
+          }),
+        );
+    }
+  }
+
   getTheme(id: number): Observable<Theme> {
     const url = 'http://localhost:8000/api/theme/' + id;
     const httpOptions = {

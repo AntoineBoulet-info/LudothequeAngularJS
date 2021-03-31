@@ -43,22 +43,24 @@ export class GamesListComponent implements OnInit {
   tri: number;
   game$: Observable<Game[]>;
   constructor(private service: GamesService) {
-    // this.game = service.getGame();
+    this.game$ = service.getGamesObs();
   }
 
   ngOnInit(): void {
     this.items = [
       {label: 'Tri par nom', icon: 'pi pi-check', command: () => {
-        this.tri = 1;
-        // this.games = this.service.getGame(this.tri);
+        this.tri = 0;
+        this.game$ = this.service.getSortGame(this.tri);
         }},
       {label: 'Tri par note', icon: 'pi pi-check', command: () => {
-          this.tri = 0;
-          // this.games = this.service.getGame(this.tri);
+          this.tri = 1;
+          this.game$ = this.service.getSortGame(this.tri);
+        }},
+      {label: 'Retirer Tri', icon: 'pi pi-check', command: () => {
+          this.game$ = this.service.getGamesObs();
         }},
     ];
     this.game$ = this.service.getGamesObs();
     console.log(this.game$);
   }
-
 }

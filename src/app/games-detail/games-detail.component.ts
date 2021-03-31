@@ -26,7 +26,7 @@ import {Theme} from '../_models/theme';
         <li>Durée : {{game.duree}}</li>
     </ul>
       <ng-template pTemplate="footer">
-        <p-button>test</p-button>
+        <p-button type="button" styleClass="p-button-success p-button-rounded p-mr-2" icon="pi pi-star" style="margin-left: 3%" [routerLink]="['/comment', game.id]"></p-button>
       </ng-template>
     </p-card>
     </div>
