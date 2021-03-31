@@ -46,9 +46,26 @@ export class ProfileComponent implements OnInit {
     this.game$ = this.service.getGamesObs();
   }
 
-  onSubmit() : void {
+/*  onSubmit(): void {
+    var lieu = <string> this.formulaire.get('lieu');
+    var prix = <number> this.formulaire.get('prix');
+    var date_achat = <Date> this.formulaire.get('date_achat');
+    this.userService.postAchat(lieu, prix, date_achat, this.user.id)
+      .pipe(first())
+      .subscribe(
+        () => {
+          this.router.navigate([this.returnUrl]);
+        },
+        error => {
+          console.log('Erreur: ', error);
+          // this.error = error.error.data.values[0];
+          this.loading = false;
+          this.messageService.add({severity: 'error', summary: 'Erreur', detail: this.error, key: 'main'});
+        });
 
-  }
+
+
+  }*/// Non Fonctionnel
 
   get lieu(): AbstractControl {
     return this.formulaire.get('lieu');
