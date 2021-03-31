@@ -37,6 +37,42 @@ export class LpSolverTestComponent implements OnInit {
     optimize: 'benefice'
   };
 
+  readonly sacAdoc = {
+    variables: {
+      o1: {
+        poids: 12,
+        prix: 10
+      },
+      o2: {
+        poids: 11,
+        prix: 10
+      },
+      o3: {
+        poids: 7,
+        prix: 15
+      },
+      o4: {
+        poids: 25,
+        prix: 32
+      },
+      o5: {
+        poids: 10,
+        prix: 7
+      },
+      o6: {
+        poids: 5,
+        prix: 7
+      }
+
+    },
+    ints: {},
+    binaries: {o1: 1, o2: 1, o3: 1, o4: 1, o5: 1, o6: 1},
+    constraints: {
+      poids: {max: 40}
+    },
+    opType: 'max',
+    optimize: 'prix'
+  };
   constructor(public messageService: MessageService) {
   }
 
@@ -57,4 +93,43 @@ export class LpSolverTestComponent implements OnInit {
     });
   }
 
+  // tslint:disable-next-line:typedef
+  resolutionSacADos(){
+    const resultat = solver.Solve(this.sacAdoc);
+    console.log(resultat);
+    const boolO1 = resultat.o1;
+    const boolO2 = resultat.o2;
+    const boolO3 = resultat.o3;
+    const boolO4 = resultat.o4;
+    const boolO5 = resultat.o5;
+    const boolO6 = resultat.o6;
+    let affiche = `Solution : `;
+    if (boolO1){
+      affiche += ` O1 : ${boolO1}`;
+    }
+    if (boolO2){
+      affiche += ` O2 : ${boolO2}`;
+    }
+    if (boolO3){
+      affiche += ` O3 : ${boolO3}`;
+    }
+    if (boolO4){
+      affiche += ` O4 : ${boolO4}`;
+    }
+    if (boolO5){
+      affiche += ` O5 : ${boolO5}`;
+    }
+    if (boolO6){
+      affiche += ` O6 : ${boolO6}`;
+    }
+    this.messageService.add({
+      key: 'main',
+      severity: 'info',
+      detail: `${affiche}`,
+    });
+  }
+
 }
+
+
+
