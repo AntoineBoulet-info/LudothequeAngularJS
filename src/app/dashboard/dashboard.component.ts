@@ -10,8 +10,8 @@ import {CarouselModule} from 'primeng/carousel';
   selector: 'app-dashboard',
   template: `
     <p-carousel [value]="game$ | async" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1" [circular]="true" [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions">
-      <ng-template pTemplate="header" let-game>
-        <h5 style="display: flex; justify-content: center; align-items: center; margin-top: 3%">GameHub</h5>
+      <ng-template pTemplate="header" let-game style="display: flex; justify-content: center; align-items: center; margin-top: 3%;">
+        <img style="width: 35px;" src="../../assets/logo.png" >
       </ng-template>
       <ng-template let-game pTemplate="item">
         <div class="product-item">
@@ -42,13 +42,9 @@ import {CarouselModule} from 'primeng/carousel';
         width: 50%;
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
       }
+      </style>
+     `
 
-    </style>
-
-  `,
-  styles: [`
-
-  `]
 })
 export class DashboardComponent implements OnInit {
   game$: Observable<Game[]>;

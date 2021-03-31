@@ -70,6 +70,7 @@ import {GamesService} from "../_services/games.service";
             <input id="langue" type="text" pInputText placeholder="Langue" formControlName="langue">
             <div *ngIf="langue.invalid && (langue.dirty || langue.touched)" class="mat-error">
               <div *ngIf="langue?.errors.required" style="color: crimson">La langue est obligatoire</div>
+              <div *ngIf="langue?.errors.minlength" style="color:crimson">Minimum 3 lettres ! </div>
               <div *ngIf="langue?.errors.pattern" style="color:crimson"> Uniquement des lettres !  </div>
             </div>
           </div>
@@ -78,7 +79,7 @@ import {GamesService} from "../_services/games.service";
             <input id="nombre_joueurs" type="text" pInputText placeholder="Nombre de joueurs" formControlName="nombre_joueurs">
             <div *ngIf="nombre_joueurs.invalid && (nombre_joueurs.dirty || nombre_joueurs.touched)" class="mat-error">
               <div *ngIf="nombre_joueurs?.errors.required" style="color: crimson">Le nombre de joueurs est obligatoire</div>
-              <div *ngIf="nombre_joueurs?.errors.minlength" style="color:crimson">Le nombre de joueurs est entre 2 et 8 </div>
+              <div *ngIf="nombre_joueurs?.errors.min || nombre_joueurs?.errors.max" style="color:crimson">Le nombre de joueurs est entre 2 et 8 </div>
               <div *ngIf="nombre_joueurs?.errors.pattern" style="color:crimson"> Uniquement des chiffres !  </div>
             </div>
           </div>
@@ -87,7 +88,7 @@ import {GamesService} from "../_services/games.service";
             <input id="age" type="text" pInputText placeholder="Age" formControlName="age">
             <div *ngIf="age.invalid && ( age.dirty || age.touched)" class="mat-error">
               <div *ngIf="age?.errors.required" style="color: crimson">L'âge est obligatoire</div>
-              <div *ngIf="age?.errors.minlength" style="color:crimson">L'âge doit être compris entre 1 et 16 ans </div>
+              <div *ngIf="age?.errors.min || age?.errors.max" style="color:crimson">L'âge doit être compris entre 1 et 16 ans</div>
               <div *ngIf="age?.errors.pattern" style="color:crimson"> Uniquement des chiffres !  </div>
             </div>
           </div>
@@ -96,7 +97,7 @@ import {GamesService} from "../_services/games.service";
             <input id="poids" type="text" pInputText placeholder="Poids" formControlName="poids">
             <div *ngIf="poids.invalid && (poids.dirty || poids.touched)" class="mat-error">
               <div *ngIf="poids?.errors.required" style="color: crimson">Le poids est obligatoire</div>
-              <div *ngIf="poids?.errors.minlength" style="color:crimson">Le poids doit être compris entre 0.100 et 5.00</div>
+              <div *ngIf="poids?.errors.min || poids?.errors.max" style="color:crimson">Le poids doit être compris entre 0.100 et 5.00</div>
               <div *ngIf="poids?.errors.pattern" style="color:crimson"> Uniquement des chiffres !  </div>
             </div>
           </div>
@@ -137,7 +138,7 @@ export class GamesFormComponent implements OnInit {
     mecanique: new FormControl(''),
     categorie: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]),
     regles: new FormControl(undefined, [Validators.required]),
-    langue: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]),
+    langue: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z]+$'), Validators.minLength(3)]),
     nombre_joueurs: new FormControl(undefined, [Validators.min(2), Validators.max(8), Validators.pattern('[0-9]*')]),
     age: new FormControl(undefined, [Validators.min(1), Validators.max(16), Validators.pattern('[0-9]*') ]),
     poids: new FormControl(undefined, [Validators.required, Validators.min(0.100), Validators.max(5.00), Validators.pattern('[0-9]*')]),
