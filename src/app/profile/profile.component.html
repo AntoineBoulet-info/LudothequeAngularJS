@@ -28,5 +28,49 @@
       <p-button label="Modifier" icon="pi pi-fw pi-pencil"></p-button>
     </ng-template>
 
+
+
 </p-card>
+  <p-panel header="Ajouter un jeu à ma collection ">
+    <form [formGroup]="formulaire" (ngSubmit)="onSubmit()">
+      <div class="p-formgroup-inline">
+        <div class="p-field">
+          <label for="game" class="p-sr-only">Jeu</label> Jeu :
+          <p-dropdown id="game" name="game" optionLabel="nom" optionValue="nom" [options]="game$ | async"
+                      formControlName="game"></p-dropdown>
+        </div>
+      </div>
+      <div class="p-fluid forms-grid" style="margin: 1em 0">
+        <label for="lieu" class="p-sr-only">Lieu</label>
+        <input id="lieu" type="text" pInputText placeholder="Lieu" formControlName="lieu">
+        <div *ngIf="lieu.invalid && (date_achat.dirty || lieu.touched)" class="mat-error">
+          <div *ngIf="lieu?.errors.required" style="color: crimson">Le lieu obligatoire</div>
+          <div *ngIf="lieu?.errors.pattern" style="color:crimson">Uniquement des lettres ! </div>
+        </div>
+      </div>
+
+      <div class="p-fluid forms-grid" style="margin: 1em 0">
+        <label for="date_achat" class="p-sr-only">Date d'achat</label>
+        <input id="date_achat" type="text" pInputText placeholder="Date d'achat" formControlName="date_achat">
+        <div *ngIf="date_achat.invalid && (date_achat.dirty || date_achat.touched)" class="mat-error">
+          <div *ngIf="date_achat?.errors.required" style="color: crimson">La date d'achat est obligatoire</div>
+          <div *ngIf="date_achat?.errors.pattern" style="color:crimson">Format : dd/mm/yyyy </div>
+        </div>
+      </div>
+
+      <div class="p-fluid forms-grid" style="margin: 1em 0">
+        <label for="prix" class="p-sr-only">Prix</label>
+        <input id="prix" type="text" pInputText placeholder="Prix" formControlName="prix">
+        <div *ngIf="prix.invalid && (prix.dirty || prix.touched)" class="mat-error">
+          <div *ngIf="prix?.errors.required" style="color: crimson">Le lieu obligatoire</div>
+          <div *ngIf="prix?.errors.pattern" style="color:crimson">Format : XX.XX </div>
+        </div>
+      </div>
+
+      <button pButton type="submit" label="Valide" [disabled]="formulaire.valid"></button>
+
+    </form>
+  </p-panel>
+
+
 </div>

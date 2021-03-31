@@ -49,10 +49,6 @@ import {GamesService} from "../_services/games.service";
             <p-dropdown id="mecanique" name="mecanique" optionLabel="nom" optionValue="nom" [options]="mecaniques$ |async"
                         formControlName="mecanique"></p-dropdown>
           </div>
-          <div class="p-field">
-            <label for="url_media" class="p-sr-only">Photo</label>
-            <option value="url_media" ></option>
-          </div>
           <div class="p-fluid forms-grid" style="margin: 1em 0">
             <label for="categorie" class="p-sr-only">Catégorie</label>
             <input id="categorie" type="text" pInputText placeholder="Categorie" formControlName="categorie">
@@ -113,7 +109,7 @@ import {GamesService} from "../_services/games.service";
             </div>
           </div>
 
-          <button pButton type="submit" label="Valide" [disabled]="!formulaire.valid"></button>
+          <button pButton type="submit" label="Valide" [disabled]="formulaire.valid"></button>
 
         </p-panel>
       </form>
@@ -139,7 +135,6 @@ export class GamesFormComponent implements OnInit {
     theme: new FormControl(''),
     editeur: new FormControl(''),
     mecanique: new FormControl(''),
-    url_media: new FormControl(undefined, [Validators.required]),
     categorie: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]),
     regles: new FormControl(undefined, [Validators.required]),
     langue: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]),
