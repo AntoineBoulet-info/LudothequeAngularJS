@@ -132,14 +132,12 @@ export class GamesService{
       description: game.description,
       theme: game.theme,
       editeur: game.editeur,
-      url_media: game.url_media,
       langue: game.langue,
       age: game.age,
       poids: game.poids,
       nombre_joueurs: game.nombre_joueurs,
       duree: game.duree,
       categories: game.categorie,
-      mecanique: game.mecanique
     }, httpOptions).pipe(
       tap(rep => console.log(rep)),
       shareReplay(),

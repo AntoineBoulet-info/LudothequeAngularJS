@@ -110,7 +110,7 @@ import {GamesService} from "../_services/games.service";
             </div>
           </div>
 
-          <button pButton type="submit" label="Valide" [disabled]="formulaire.valid"></button>
+          <button pButton type="submit" label="Valide"  [disabled]="formulaire.valid"></button>
 
         </p-panel>
       </form>
@@ -124,7 +124,7 @@ import {GamesService} from "../_services/games.service";
   ]
 })
 export class GamesFormComponent implements OnInit {
-  // @Input() Game: Game;
+  Game: Game;
   titre: string;
   editeur$: Observable<Editeur[]> ;
   theme$: Observable<Theme[]>;
@@ -155,22 +155,16 @@ export class GamesFormComponent implements OnInit {
     this.theme$ = this.service.getThemeObs();
     this.mecaniques$ = this.service.getMecanicsObs();
 
-    /*this.service.getThemeObs().subscribe(
-      val => theme_obs.push(val),
-      err => console.log(err),
-      () => this.theme$ = of(theme_obs)
-    );
-    this.service.getMecanicsObs().subscribe(
-      val => mecanics_obs.push(val),
-      err => console.log(err),
-      () => this.mecaniques$ = of(mecanics_obs)
-    );*/
 
   }
 
   onSubmit(): void {
     //this.game = { ...this.game, ...this.formulaire.value};
     //console.log(this.game);
+    console.log(this.formulaire.value);
+    this.service.postGame(this.Game);
+    console.log(this.service.postGame(this.Game));
+
   }
 
 
@@ -182,9 +176,6 @@ export class GamesFormComponent implements OnInit {
     return this.formulaire.get('description');
   }
 
-  get url_media(): AbstractControl {
-    return this.formulaire.get('url_media');
-  }
 
   get regles(): AbstractControl {
     return this.formulaire.get('regles');
