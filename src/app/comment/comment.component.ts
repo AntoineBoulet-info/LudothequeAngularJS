@@ -59,7 +59,7 @@ import {CommentService} from '../_services/comment.service';
 export class CommentComponent implements OnInit {
   val: number;
 
-  constructor(private service: CommentService) {
+  constructor() {
   }
 
   ngOnInit(): void {

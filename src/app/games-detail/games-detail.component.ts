@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {GamesService} from "../_services/games.service";
 import {Observable, Subscription} from 'rxjs';
 import {Theme} from '../_models/theme';
+import {Mecaniques} from "../_models/mecaniques";
 
 @Component({
   selector: 'app-games-detail',
@@ -15,7 +16,7 @@ import {Theme} from '../_models/theme';
       </ng-template>
       <ul>
         <li>Mécanique : {{game.mecanique}}</li>
-        <li>Thème: {{game.theme}}</li>
+        <li>Thème : {{game.theme}}</li>
         <li>Règles : {{game.regles}}</li>
         <li>Catégorie : {{game.categorie}}</li>
         <li>Langue : {{game.langue}}</li>
@@ -37,6 +38,8 @@ import {Theme} from '../_models/theme';
 export class GamesDetailComponent implements OnInit {
   game: Game;
   theme: Theme;
+  meca: Mecaniques;
+
 
   constructor(private route: ActivatedRoute, private router: Router,  private service: GamesService ) {
   }
@@ -50,6 +53,10 @@ export class GamesDetailComponent implements OnInit {
     this.service.getTheme(id).subscribe(
       (value) => {
         this.theme = value;
+      });
+    this.service.getMeca(id).subscribe(
+      (value) => {
+        this.meca = value;
       });
   }
 
