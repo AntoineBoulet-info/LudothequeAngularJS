@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthentificationService} from '../_services/authentification.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {first} from 'rxjs/operators';
+import {MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-add-user',
@@ -69,12 +71,15 @@ import {Router} from '@angular/router';
 })
 export class AddUserComponent implements OnInit {
   user: any = {
+    pseudo: null,
     nom: null,
     prenom: null,
-    pseudo: null,
     email: null,
     password: null
   };
+  returnUrl: string;
+  error = '';
+
   loading: boolean;
 
   formulaire = new FormGroup(
@@ -88,9 +93,11 @@ export class AddUserComponent implements OnInit {
     }
   );
 
-  constructor(private authService: AuthentificationService, private router: Router) { }
+  // tslint:disable-next-line:max-line-length
+  constructor(private messageService: MessageService, private authService: AuthentificationService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
   }
   get nom(): AbstractControl{
     return this.formulaire.get('nom');
@@ -110,11 +117,26 @@ export class AddUserComponent implements OnInit {
 
 
   onSubmit(): void {
-    this.user = {...this.user, ...this.formulaire.value};
+   /* this.user = {...this.user, ...this.formulaire.value};
     this.loading = true;
     this.authService.createUser(this.user);
     this.loading = false;
     this.router.navigate(['/profile']);
+*/
+    this.user = {...this.user, ...this.formulaire.value};
+    this.loading = true;
+    this.authService.createUser(this.user.pseudo, this.user.nom, this.user.prenom, this.user.email, this.user.password)
+      .pipe(first())
+      .subscribe(
+        () => {
+          this.router.navigate([this.returnUrl]);
+        },
+        error => {
+          console.log('Erreur: ', error);
+          // this.error = error.error.data.values[0];
+          this.loading = false;
+          this.messageService.add({severity: 'error', summary: 'Erreur', detail: this.error, key: 'main'});
+        });
 
 
   }

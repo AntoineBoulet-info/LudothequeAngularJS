@@ -19,10 +19,12 @@
       <p-avatar icon="pi pi-user" styleClass="p-mr-2" size="xxlarge>" shape="circle"></p-avatar>
     </ng-template>
     <p>{{user.email}}</p>
+    <p>Pseudo : {{user.pseudo}}</p>
     <p>Crée : {{user.created_at | amDateFormat:'LL'}} </p>
     <p>Modifié : {{user.updated_at | amDateFormat:'LL'}}</p>
 
     <ng-template pTemplate="footer">
+      <p-button label="Mes jeux" icon="pi pi-fw pi-pencil"></p-button>
       <p-button label="Modifier" icon="pi pi-fw pi-pencil"></p-button>
     </ng-template>
 

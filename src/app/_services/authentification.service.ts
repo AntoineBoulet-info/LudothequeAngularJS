@@ -77,7 +77,7 @@ export class AuthentificationService {
     this.stopRefreshTokenTimer();
     this.userSubject.next(ANONYMOUS_USER);
 
-    this.router.navigate(['/login']);
+    this.router.navigate(['/dashboard']);
   }
 
 
@@ -108,17 +108,23 @@ export class AuthentificationService {
     clearTimeout(this.refreshTokenTimeout);
   }
 
-  createUser(user: User): Observable<User> {
-    const url = `http://localhost:8000/api/register`;
-    return this.http.post<any>(url, user, httpOptions)
+  createUser(pseudo: string, nom: string, prenom: string, email: string, password: string ): Observable<any> {
+    // const url = `http://localhost:8000/api/register`;
+    return this.http.post<any>(`${environment.apiUrl}/auth/register`, {pseudo, nom, prenom, email, password}, httpOptions)
       .pipe(
-        map(res => res.data.item),
-        tap(body => console.log(body)),
+        tap(rep => console.log(rep)),
+        map(rep => {
+          const user = {user: rep.data.value, jwtToken: rep.data.token};
+          console.log('User registered: ', user);
+          return user;
+        }),
+        shareReplay(),
         catchError(err => {
-          console.log('Erreur http : ', err);
-          return of(undefined);
-        })
-      );
-  } // Gaëtan - Fonction à vérif
+          this.stopRefreshTokenTimer();
+          this.userSubject.next(ANONYMOUS_USER);
+          return throwError('bug');
+          // return of('');
+        }));
+  }
 
 }

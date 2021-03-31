@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {RatingModule} from 'primeng/rating';
+import {CommentService} from '../_services/comment.service';
 @Component({
   selector: 'app-comment',
   template: `
@@ -58,9 +59,16 @@ import {RatingModule} from 'primeng/rating';
 export class CommentComponent implements OnInit {
   val: number;
 
-  constructor() {}
+  constructor(private service: CommentService) {
+  }
 
   ngOnInit(): void {
+    // this.service.postComment(this.val,)
   }
+
+
+
+
+
 
 }
