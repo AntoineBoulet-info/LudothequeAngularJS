@@ -29,6 +29,24 @@ import {CarouselModule} from 'primeng/carousel';
         </div>
       </ng-template>
     </p-carousel>
+
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
+    
+    <div class="footer-clean">
+      <footer>
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-3 item social">
+              <p class="copyright">Les Mousquetaires© 2021</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>-->
     <style>
       .product-item-content {
         border: 1px solid var(--surface-d);
@@ -42,8 +60,14 @@ import {CarouselModule} from 'primeng/carousel';
         width: 50%;
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
       }
-      </style>
-     `
+/*      .footer-clean .copyright {
+        margin-top:14px;
+        margin-bottom:0;
+        font-size:13px;
+        opacity:0.6;
+      }*/
+    </style>
+  `
 
 })
 export class DashboardComponent implements OnInit {
@@ -73,9 +97,5 @@ export class DashboardComponent implements OnInit {
     this.game$ = this.service.getGamesObs();
   }
 }
-
-
-
-
 
 
