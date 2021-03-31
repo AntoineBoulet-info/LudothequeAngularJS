@@ -40,6 +40,7 @@ import {SplitButtonModule} from "primeng/splitbutton";
 import {TableModule} from "primeng/table";
 import { CommentComponent } from './comment/comment.component';
 import {RatingModule} from 'primeng/rating';
+import {Carousel, CarouselModule} from 'primeng/carousel';
 
 
 registerLocaleData(localeFr, 'fr');
@@ -56,7 +57,7 @@ registerLocaleData(localeFr, 'fr');
     AddUserComponent,
     GamesListComponent,
     GamesDetailComponent,
-    CommentComponent
+    CommentComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,7 +87,8 @@ registerLocaleData(localeFr, 'fr');
     ConfirmDialogModule,
     AvatarModule,
     RatingModule,
-    FormsModule
+    FormsModule,
+    CarouselModule
   ],
   providers: [AuthentificationService, MessageService,
     {provide: LOCALE_ID, useValue: 'fr-FR'},

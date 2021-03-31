@@ -29,7 +29,7 @@ import {Observable, of} from 'rxjs';
           <td>{{game.nombre_joueurs}}</td>
           <td>{{game.age}}</td>
           <td>
-            <button type="button" pButton pRipple icon="pi pi-search" [routerLink]="['/games', game.id]"></button>
+            <p-button type="button" styleClass="p-button p-button-rounded p-mr-2" icon="pi pi-search" [routerLink]="['/games', game.id]"></p-button>
           </td>
           </tr>
         </ng-template>

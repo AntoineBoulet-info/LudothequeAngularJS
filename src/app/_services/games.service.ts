@@ -25,6 +25,14 @@ export class GamesService{
   }
 
 
+/*
+  getGame(id: number): Game {
+    const game$ = this.getGamesObs();
+
+    const example = game$.pipe(filter(game => game.id = id));
+  }
+*/
+
   getGamesObs(): Observable<Game[]> {
     const url = 'http://localhost:8000/api/jeux';
     const httpOptions = {

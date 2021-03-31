@@ -19,7 +19,7 @@ const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path: 'create-game', component: GamesFormComponent},
   {path: 'add-user', component: AddUserComponent},
-  {path: 'details/:id', component: GamesDetailComponent},
+  {path: 'games/:id', component: GamesDetailComponent},
   {path: 'games', component: GamesListComponent},
   {path: 'comment', component: CommentComponent},
   {path: 'games/:id/comment', component: CommentComponent},
