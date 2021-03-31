@@ -75,6 +75,40 @@ export class GamesService{
     }
   }
 
+  getFilterAge(x: number){
+    // tslint:disable-next-line:triple-equals
+      const url = 'http://localhost:8000/api/jeux/?age=' + x;
+      const httpOptions = {
+        headers: new HttpHeaders({'Content-Type': 'application/json'})
+      };
+      return this.http.get<any>(url, httpOptions)
+        .pipe(
+          map(res => res.data.item),
+          tap(val => console.log(val)),
+          catchError(err => {
+            console.log('Erreur http : ', err);
+            return of([]);
+          }),
+        );
+  }
+  getFilterJoueurs(x: number){
+    // tslint:disable-next-line:triple-equals
+    const url = 'http://localhost:8000/api/jeux/?nbJoueurs=' + x;
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    };
+    return this.http.get<any>(url, httpOptions)
+      .pipe(
+        map(res => res.data.item),
+        tap(val => console.log(val)),
+        catchError(err => {
+          console.log('Erreur http : ', err);
+          return of([]);
+        }),
+      );
+  }
+
+
   getTheme(id: number): Observable<Theme> {
     const url = 'http://localhost:8000/api/theme/' + id;
     const httpOptions = {

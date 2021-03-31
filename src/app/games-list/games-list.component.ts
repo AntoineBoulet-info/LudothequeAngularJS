@@ -7,7 +7,9 @@ import {Observable, of} from 'rxjs';
 @Component({
   selector: 'app-games-list',
   template: `
-    <p-splitButton label="Tri" icon="pi pi-check" iconPos="right" [model]="items"></p-splitButton>
+    <p-splitButton style="margin-left:1px"  label="Tri" icon="pi pi-check" iconPos="right" [model]="items"></p-splitButton>
+    <p-splitButton style="margin-left:1px"  label="Filtre par âge: " icon="pi pi-check" iconPos="right" [model]="items_age"></p-splitButton>
+      <p-splitButton style="margin-left:1px"   label="Filtre par Nombre de Joueurs: " icon="pi pi-check" iconPos="right" [model]="items_joueurs"></p-splitButton>
     <p-table [value]="game$ | async">
        <ng-template pTemplate="header">
          <tr>
@@ -40,8 +42,11 @@ import {Observable, of} from 'rxjs';
 })
 export class GamesListComponent implements OnInit {
   items: MenuItem[];
+  items_age: MenuItem[];
+  items_joueurs: MenuItem[];
   tri: number;
   game$: Observable<Game[]>;
+  age: number = 4;
   constructor(private service: GamesService) {
     this.game$ = service.getGamesObs();
   }
@@ -49,15 +54,49 @@ export class GamesListComponent implements OnInit {
   ngOnInit(): void {
     this.items = [
       {label: 'Tri par nom', icon: 'pi pi-check', command: () => {
-        this.tri = 0;
-        this.game$ = this.service.getSortGame(this.tri);
+          this.tri = 0;
+          this.game$ = this.service.getSortGame(this.tri);
         }},
       {label: 'Tri par note', icon: 'pi pi-check', command: () => {
           this.tri = 1;
           this.game$ = this.service.getSortGame(this.tri);
         }},
-      {label: 'Retirer Tri', icon: 'pi pi-check', command: () => {
+      {label: 'Reset Tri', icon: 'pi pi-check', command: () => {
           this.game$ = this.service.getGamesObs();
+        }},
+    ];
+    this.items_age = [
+      {label: '<= 4', icon: 'pi pi-check', command: () => {
+          this.game$ = this.service.getFilterAge(4);
+        }},
+      {label: '<= 6', icon: 'pi pi-check', command: () => {
+          this.game$ = this.service.getFilterAge(6);
+        }},
+      {label: '<= 10', icon: 'pi pi-check', command: () => {
+          this.game$ = this.service.getFilterAge(10);
+        }},
+      {label: '<= 14', icon: 'pi pi-check', command: () => {
+          this.game$ = this.service.getFilterAge(14);
+        }},
+      {label: '<= 18', icon: 'pi pi-check', command: () => {
+          this.game$ = this.service.getFilterAge(18);
+        }},
+    ];
+    this.items_joueurs = [
+      {label: '<= 2', icon: 'pi pi-check', command: () => {
+          this.game$ = this.service.getFilterJoueurs(2);
+        }},
+      {label: '<= 4', icon: 'pi pi-check', command: () => {
+          this.game$ = this.service.getFilterJoueurs(4);
+        }},
+      {label: '<= 6', icon: 'pi pi-check', command: () => {
+          this.game$ = this.service.getFilterJoueurs(6);
+        }},
+      {label: '<=8', icon: 'pi pi-check', command: () => {
+          this.game$ = this.service.getFilterJoueurs(8);
+        }},
+      {label: '<= 10', icon: 'pi pi-check', command: () => {
+          this.game$ = this.service.getFilterJoueurs(10);
         }},
     ];
     this.game$ = this.service.getGamesObs();
