@@ -249,7 +249,8 @@ export class GamesService{
 
     console.log('Create Game');
     // tslint:disable-next-line:max-line-length
-    return this.http.post<any>(`${environment.apiUrl}jeux`, {nom, description, theme, editeur, langue, age, poids, nombre_joueurs, categorie, duree, regles}, httpOptions)
+    console.log(nom, description, theme, editeur, langue, age, poids, nombre_joueurs, categorie, duree, regles);
+    return this.http.post<any>(`${environment.apiUrl}/jeux`, {nom, description, theme, editeur, langue, age, poids, nombre_joueurs, categorie, duree, regles}, httpOptions)
       .pipe(
         tap(rep => console.log(rep)),
         map(rep => {

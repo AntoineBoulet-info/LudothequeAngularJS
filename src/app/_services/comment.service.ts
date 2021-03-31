@@ -17,13 +17,14 @@ export class CommentService{
   constructor(private router: Router, private http: HttpClient, private messageService: MessageService) {}
 
 
-  postComment(note: number, commentaire: string, jeu_id: number){
-    const date_com = Date.now()
-    return this.http.post<any>(`${environment.apiUrl}/auth/commentaires`, {note, commentaire, jeu_id, date_com}, httpOptions)
+  postComment(note: number, commentaire: string, jeu_id: number): Observable<any>{
+    // tslint:disable-next-line:variable-name
+    const date_com = Date.now();
+    return this.http.post<any>(`${environment.apiUrl}/commentaires`, {note, commentaire, jeu_id, date_com}, httpOptions)
       .pipe(
         tap(rep => console.log(rep)),
         map(rep => {
-          const user = {...rep.data.user, jwtToken: rep.data.token};
+          const user = rep.data;
           return user;
         }),
         shareReplay(),
@@ -31,5 +32,6 @@ export class CommentService{
           return throwError('bug');
           // return of('');
         }));
+
   }
 }

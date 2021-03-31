@@ -35,7 +35,7 @@ import {GamesService} from '../_services/games.service';
           <div class="p-formgroup-inline">
             <div class="p-field">
               <label for="theme" class="p-sr-only">Thème</label> Thème :
-              <p-dropdown id="theme" name="theme" optionLabel="id, nom" optionValue="nom" [options]="theme$ | async"
+              <p-dropdown id="theme" name="theme" optionLabel="nom" optionValue="nom" [options]="theme$ | async"
                           formControlName="theme"></p-dropdown>
             </div>
           </div>
