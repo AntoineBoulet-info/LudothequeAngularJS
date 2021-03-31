@@ -9,6 +9,7 @@ import {GamesFormComponent} from './games-form/games-form.component';
 import {AddUserComponent} from './add-user/add-user.component';
 import {GamesDetailComponent} from './games-detail/games-detail.component';
 import {GamesListComponent} from './games-list/games-list.component';
+import {CommentComponent} from './comment/comment.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
@@ -20,6 +21,8 @@ const routes: Routes = [
   {path: 'add-user', component: AddUserComponent},
   {path: 'details/:id', component: GamesDetailComponent},
   {path: 'games', component: GamesListComponent},
+  {path: 'comment', component: CommentComponent},
+  {path: 'games/:id/comment', component: CommentComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
 

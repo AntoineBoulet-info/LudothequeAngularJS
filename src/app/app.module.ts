@@ -5,7 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AuthentificationService} from './_services/authentification.service';
 import {MessagesModule} from 'primeng/messages';
 import {ToastModule} from 'primeng/toast';
@@ -38,6 +38,8 @@ import {GamesDetailComponent} from "./games-detail/games-detail.component";
 import {RippleModule} from "primeng/ripple";
 import {SplitButtonModule} from "primeng/splitbutton";
 import {TableModule} from "primeng/table";
+import { CommentComponent } from './comment/comment.component';
+import {RatingModule} from 'primeng/rating';
 
 
 registerLocaleData(localeFr, 'fr');
@@ -53,7 +55,8 @@ registerLocaleData(localeFr, 'fr');
     PageNotFoundComponent,
     AddUserComponent,
     GamesListComponent,
-    GamesDetailComponent
+    GamesDetailComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +84,9 @@ registerLocaleData(localeFr, 'fr');
     TableModule,
     InputTextModule,
     ConfirmDialogModule,
-    AvatarModule
+    AvatarModule,
+    RatingModule,
+    FormsModule
   ],
   providers: [AuthentificationService, MessageService,
     {provide: LOCALE_ID, useValue: 'fr-FR'},
