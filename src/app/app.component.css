@@ -1,0 +1,34 @@
+
+.buttonGhub:hover {
+  background-color: #FAAC3D;
+
+}
+.buttonGhub  {
+  border: none;
+  border-radius: 0;
+  color: #fff !important;
+  font-size: 16px;
+  outline: none;
+  padding: 7px 20px;
+  background: #2fb8f8;
+  text-decoration: none !important;
+  display: inline-block;
+  border-radius: 10px;
+}
+
+.buttonLogin:hover {
+  background-color: #FAAC3D;
+
+}
+.buttonLogin  {
+  border: none;
+  border-radius: 0;
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+  padding: 7px 20px;
+  background: #2fb8f8;
+  text-decoration: none !important;
+  display: inline-block;
+  border-radius: 10px;
+}

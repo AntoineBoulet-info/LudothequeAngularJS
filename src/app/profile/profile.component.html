@@ -12,9 +12,9 @@
 </div>
 -->
 
-<div *ngIf="!loading">
+<div *ngIf="!loading" style="display: flex; justify-content: center; align-items: center; margin-top: 3%">
 
-  <p-card header="{{user.prenom}} {{user.nom}}" subheader="Utilisateur de Gamehub" style="width: 360px" styleClass="p-card-shadow">
+  <p-card  header="{{user.prenom}} {{user.nom}}" subheader="Utilisateur de Gamehub" style="width: 360px" styleClass="p-card-shadow" >
     <ng-template pTemplate="header">
       <p-avatar icon="pi pi-user" styleClass="p-mr-2" size="xxlarge>" shape="circle"></p-avatar>
     </ng-template>

@@ -5,10 +5,10 @@
 <p-menubar [model]="items">
 
   <div style="display:inline-block" >
-  <div style="display: inline;margin-right: 15px;" *ngIf="authService.isLoggedOut$ | async"><p-button [routerLink]="['/login']">Login</p-button></div>
+  <div style="display: inline;margin-right: 15px;" *ngIf="authService.isLoggedOut$ | async"><button class="buttonLogin"[routerLink]="['/login']">Login</button></div>
     <div style="display: inline;margin-right: 15px;" *ngIf="authService.isLoggedIn$ | async"><p-button [routerLink]="['/profile']">Profile</p-button></div>
     <div style="display: inline;margin-right: 15px;" *ngIf="authService.isLoggedIn$ | async"><p-button (click)="logout()">Logout</p-button></div>
-  <p-button [routerLink]="['/dashboard']" style="display:inline">Gamehub </p-button>
+  <button class="buttonGhub" [routerLink]="['/dashboard']" style="display:inline" >Gamehub</button>
   </div>
 </p-menubar>
 
