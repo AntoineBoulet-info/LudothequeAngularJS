@@ -6,8 +6,8 @@
 </p-toast>
 
 <p-menubar [model]="items">
-
   <div style="display:inline-block" >
+
   <div style="display: inline;margin-right: 15px;" *ngIf="authService.isLoggedOut$ | async"><button class="buttonbar"[routerLink]="['/login']">Login</button></div>
     <div style="display: inline;margin-right: 15px;" *ngIf="authService.isLoggedOut$ | async"><button class="buttonbar"[routerLink]="['/add-user']">Créer un profil</button></div>
     <div style="display: inline;margin-right: 15px;" *ngIf="authService.isLoggedIn$ | async"><button class="buttonbar" [routerLink]="['/profile']">Profile</button></div>

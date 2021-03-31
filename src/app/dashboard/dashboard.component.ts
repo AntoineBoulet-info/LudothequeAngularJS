@@ -10,8 +10,8 @@ import {CarouselModule} from 'primeng/carousel';
   selector: 'app-dashboard',
   template: `
     <p-carousel [value]="game$ | async" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1" [circular]="true" [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions">
-      <ng-template pTemplate="header" let-game style="display: flex; justify-content: center; align-items: center; margin-top: 3%;">
-        <img style="width: 35px;" src="../../assets/logo.png" >
+      <ng-template pTemplate="header" let-game >
+        <img style="display: block; margin-left: auto; margin-right: auto;  width: 80px; margin-top: 1%; margin-bottom: 1%" src="../../assets/logo.png" >
       </ng-template>
       <ng-template let-game pTemplate="item">
         <div class="product-item">

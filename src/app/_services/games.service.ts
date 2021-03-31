@@ -24,21 +24,28 @@ export class GamesService{
 
   }
 
-
-/*
-  getGame(id: number): Game {
-    const game$ = this.getGamesObs();
-
-    const example = game$.pipe(filter(game => game.id = id));
+  getGame(id: number): Observable<Game> {
+    const url = 'http://localhost:8000/api/jeux/' + id;
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    };
+    return this.http.get<any>(url, httpOptions)
+      .pipe(
+        map(res => res.data.item),
+        tap(val => console.log(val)),
+        catchError(err => {
+          console.log('Erreur http : ', err);
+          return of([]);
+        }),
+      );
   }
-*/
+
 
   getGamesObs(): Observable<Game[]> {
     const url = 'http://localhost:8000/api/jeux';
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
     };
-    // @ts-ignore
     return this.http.get<any>(url, httpOptions)
       .pipe(
         map(res => res.data.item),

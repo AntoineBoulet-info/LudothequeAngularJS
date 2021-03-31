@@ -9,7 +9,7 @@ import {Observable} from 'rxjs';
   template: `
     <p-panel header="Game"  [toggleable]="true">
       <p-table [value]="game$ | async">
-        <ng-template pTemplate="body" let-game>
+        <ng-template let-game>
       <ul>
         <li>Nom : {{game.nom}}</li>
         <li>Mécanique : {{game.mecanique}}</li>
@@ -33,7 +33,7 @@ import {Observable} from 'rxjs';
   ]
 })
 export class GamesDetailComponent implements OnInit {
-  game$: Observable<Game[]>;
+  game$: Observable<Game>;
 
 
   constructor(private route: ActivatedRoute, private router: Router,  private service: GamesService ) {
@@ -41,7 +41,7 @@ export class GamesDetailComponent implements OnInit {
 
   ngOnInit(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    /*this.game$ = this.service.getGame(id);*/
+    this.game$ = this.service.getGame(id);
   }
 
 }
