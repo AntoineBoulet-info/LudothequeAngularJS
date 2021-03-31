@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'app-add-user',
   template: `
+    <div style="display: flex; justify-content: center; align-items: center; margin-top: 3%">
     <form [formGroup]="formulaire" (ngSubmit)="onSubmit()">
       <div class="p-formgroup-inline">
         <div class="p-field">
@@ -57,10 +58,13 @@ import {Router} from '@angular/router';
           </div>
         </div>
       </div>
-      <button [disabled]="!formulaire.valid">Valide</button>
+      <button [disabled]="!formulaire.valid" class="ButtonVal" >Valide</button>
     </form>
+    </div>
   `,
   styles: [
+   ' .ButtonVal{border: none;border-radius: 0;color: #fff !important;font-size: 16px;outline: none;padding: 7px 20px;background: #2fb8f8;text-decoration: none !important;display: inline-block;border-radius: 10px;}',
+
   ]
 })
 export class AddUserComponent implements OnInit {

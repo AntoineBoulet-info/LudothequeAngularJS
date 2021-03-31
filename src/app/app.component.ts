@@ -19,7 +19,7 @@ constructor(public messageService: MessageService, public authService: Authentif
   ngOnInit(): void {
     this.items = [
       {
-        label: 'Ro',
+        label: 'Recherche opérationelle',
         icon: 'pi pi-fw pi-book',
         routerLink: '/ro',
         routerLinkActiveOptions: {exact: true},
@@ -31,17 +31,17 @@ constructor(public messageService: MessageService, public authService: Authentif
         routerLinkActiveOptions: {exact: true},
       },
       {
-        label: 'Games',
+        label: 'Liste des jeux',
         icon: 'pi pi-desktop',
         routerLink: '/games',
         routerLinkActiveOptions: {exact: true},
       },
-      {
+/*      {
         label: 'Créer un profil',
         icon: 'pi pi-fw pi-pencil',
         routerLink: '/add-user',
         routerLinkActiveOptions: {exact: true},
-      },
+      },*/
       ];
   }
 

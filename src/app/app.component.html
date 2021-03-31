@@ -5,10 +5,11 @@
 <p-menubar [model]="items">
 
   <div style="display:inline-block" >
-  <div style="display: inline;margin-right: 15px;" *ngIf="authService.isLoggedOut$ | async"><button class="buttonLogin"[routerLink]="['/login']">Login</button></div>
-    <div style="display: inline;margin-right: 15px;" *ngIf="authService.isLoggedIn$ | async"><p-button [routerLink]="['/profile']">Profile</p-button></div>
-    <div style="display: inline;margin-right: 15px;" *ngIf="authService.isLoggedIn$ | async"><p-button (click)="logout()">Logout</p-button></div>
-  <button class="buttonGhub" [routerLink]="['/dashboard']" style="display:inline" >Gamehub</button>
+  <div style="display: inline;margin-right: 15px;" *ngIf="authService.isLoggedOut$ | async"><button class="buttonbar"[routerLink]="['/login']">Login</button></div>
+    <div style="display: inline;margin-right: 15px;" *ngIf="authService.isLoggedOut$ | async"><button class="buttonbar"[routerLink]="['/add-user']">Créer un profil</button></div>
+    <div style="display: inline;margin-right: 15px;" *ngIf="authService.isLoggedIn$ | async"><button class="buttonbar" [routerLink]="['/profile']">Profile</button></div>
+    <div style="display: inline;margin-right: 15px;" *ngIf="authService.isLoggedIn$ | async"><button class="buttonbar" (click)="logout()">Logout</button></div>
+  <button class="buttonbar" [routerLink]="['/dashboard']" style="display:inline" >Gamehub</button>
   </div>
 </p-menubar>
 
