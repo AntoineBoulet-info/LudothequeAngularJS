@@ -8,22 +8,60 @@ import {Observable, of} from 'rxjs';
   selector: 'app-games-list',
   template: `
     <p-splitButton label="Tri" icon="pi pi-check" iconPos="right" [model]="items"></p-splitButton>
-    <p-table [value]="game$ | async">
-    <ng-template pTemplate="body" let-game>
-      <p-card header="{{game.nom}}" subheader="{{game.theme}}" [style]="{width: '360px'}" styleClass="p-card-shadow">
+<!--      rows]="10" [paginator]="true"-->
+<!--
+      <p-table [value]="game$ | async">
         <ng-template pTemplate="header">
-          <img alt="Card" src="{{game.url_media}}">
+          <tr>
+            <th>Nom</th>
+            <th>Photo</th>
+            <th>Thème</th>
+            <th>Durée</th>
+            <th>Joueurs</th>
+            <th>Age minimum</th>
+            <th>Action</th>
+          </tr>
         </ng-template>
-        <ul>
-          <li>Durée : {{game.duree}}</li>
-          <li>Nombre joueurs : {{game.nombre_joueurs}}</li>
-          <li>Age minimum : {{game.age}}</li>
-        </ul>
-        <ng-template pTemplate="footer">
-          <button type="button" pButton pRipple icon="pi pi-search" [routerLink]="['/games', game.id]"></button>
+        <ng-template pTemplate="body" let-jeuxService>
+          <tr>
+            <td>{{game.nom}}}</td>
+            <td><img src="{{jeuxService.url_media}}" width="150px"></td>
+            <td>{{game.service.theme_id.nom}}</td>
+            <td>{{jeuxService.duree}}</td>
+            <td>{{jeuxService.nombre_joueurs}}</td>
+            <td>{{jeuxService.age}}</td>
+            <td>
+              <button type="button" pButton pRipple icon="pi pi-search" [routerLink]="['/games', jeuxService.id]"></button>
+            </td>
+          </tr>
         </ng-template>
-      </p-card>
-    </ng-template>
+      </p-table>
+-->
+    <p-table [value]="game$ | async">
+       <ng-template pTemplate="header">
+         <tr>
+           <th>Nom</th>
+           <th>Photo</th>
+           <th>Thème</th>
+           <th>Durée</th>
+           <th>Joueurs</th>
+           <th>Age minimum</th>
+           <th>Action</th>
+         </tr>
+       </ng-template>
+    <ng-template pTemplate="body" let-game>
+        <tr>
+          <td>{{game.nom}}</td>
+          <td><img src="{{game.url_media}}" width="150px"> </td>
+          <td>{{game.theme}}</td>
+          <td>{{game.duree}}</td>
+          <td>{{game.nombre_joueurs}}</td>
+          <td>{{game.age}}</td>
+          <td>
+            <button type="button" pButton pRipple icon="pi pi-search" [routerLink]="['/games', game.id]"></button>
+          </td>
+          </tr>
+        </ng-template>
     </p-table>
   `,
   styles: [
