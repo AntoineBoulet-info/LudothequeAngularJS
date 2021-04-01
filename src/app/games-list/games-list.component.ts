@@ -26,7 +26,7 @@ import {Observable, of} from 'rxjs';
         <tr>
           <td>{{game.nom}}</td>
           <td><img src="{{game.url_media}}" width="150px"> </td>
-          <td>{{game.theme}}</td>
+          <td>{{game.theme_id.nom}}</td>
           <td>{{game.duree}}</td>
           <td>{{game.nombre_joueurs}}</td>
           <td>{{game.age}}</td>

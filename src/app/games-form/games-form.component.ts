@@ -185,8 +185,6 @@ export class GamesFormComponent implements OnInit {
   }
 
 
-
-
   get nom(): AbstractControl {
     return this.formulaire.get('nom');
   }
